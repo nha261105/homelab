@@ -94,7 +94,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 |---|---|---|---|---|---|---|
 | 1 | `fixed-window` | Cửa sổ độ dài k | Fixed-size window | Khung dài k trượt sang phải: +phần tử vào, −phần tử ra | LeetCode 643 · CSES 1643 Maximum Subarray Sum | ✅ |
 | 2 | `longest-unique` | Chuỗi con dài nhất không lặp | Longest substring without repeats | `"abcabcbb"`: mở rộng bên phải, gặp ký tự trùng thì co bên trái | LeetCode 3 · CSES 1141 Playlist | ✅ |
-| 3 | `min-window-sum` | Đoạn ngắn nhất có tổng ≥ S | Shortest window with sum ≥ S | Khung co giãn, ghi lại độ dài nhỏ nhất mỗi lần tổng đủ | LeetCode 209 · CSES 1660 Subarray Sums I | ⬜ |
+| 3 | `min-window-sum` | Đoạn ngắn nhất có tổng ≥ S | Shortest window with sum ≥ S | Khung co giãn, ghi lại độ dài nhỏ nhất mỗi lần tổng đủ | LeetCode 209 · CSES 1660 Subarray Sums I | ✅ |
 
 ### 07. Binary Search · Binary Search · key `binary-search` · Đợt 1
 
