@@ -86,7 +86,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 |---|---|---|---|---|---|---|
 | 1 | `pair-sum` | Tìm cặp có tổng bằng target | Pair with a target sum | `[1,3,4,6,8,11,15]`, target 14, hai con trỏ tiến về nhau | CSES 1640 · LeetCode 167 · CF 279B | ✅ |
 | 2 | `remove-dupes` | Xoá phần tử trùng tại chỗ | Remove duplicates in place | Con trỏ đọc `i` chạy trước, con trỏ ghi `k` chỉ tiến khi gặp số mới | LeetCode 26 · CSES 1090 Ferris Wheel | ✅ |
-| 3 | `three-sum` | Ba số có tổng cho trước | Three numbers with a given sum | Cố định `i`, chạy Two Pointers trên phần còn lại | LeetCode 15 · CSES 1641 Sum of Three Values · CSES 1642 | ⬜ |
+| 3 | `three-sum` | Ba số có tổng cho trước | Three numbers with a given sum | Cố định `i`, chạy Two Pointers trên phần còn lại | LeetCode 15 · CSES 1641 Sum of Three Values · CSES 1642 | ✅ |
 
 ### 06. Sliding Window · Sliding Window · key `sliding-window` · Đợt 1
 
