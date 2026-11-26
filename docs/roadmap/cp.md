@@ -100,7 +100,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `lower-bound` | lower_bound từng bước | lower_bound step by step | Khung `[lo, hi)` co một nửa mỗi bước, tới vị trí đầu tiên ≥ x | LeetCode 704 · LeetCode 35 | ⬜ |
+| 1 | `lower-bound` | lower_bound từng bước | lower_bound step by step | Khung `[lo, hi)` co một nửa mỗi bước, tới vị trí đầu tiên ≥ x | LeetCode 704 · LeetCode 35 | ✅ |
 | 2 | `answer-search` | Chặt nhị phân đáp án | Binary search on the answer | Trục thời gian t; hàm "làm kịp không?" sai…sai đúng…đúng, tìm điểm đổi | CSES 1620 Factory Machines · LeetCode 875 · CSES 1085 Array Division | ⬜ |
 
 ### 08. Stack, Queue & Deque · Stack, Queue & Deque · key `stack-queue` · Đợt 2
