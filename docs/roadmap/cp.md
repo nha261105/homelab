@@ -53,7 +53,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `big-o` | Đếm bước, không đếm giây | Count steps, not seconds | 4 cột khối O(1), O(log n), O(n), O(n²); tăng n = 2 → 4 → 8, cột O(n²) vọt lên | CSES 1068 Weird Algorithm · CSES 1083 Missing Number | ✅ |
-| 2 | `time-limit` | Từ n ra thuật toán | From n to the algorithm | Bảng n = 10, 20, 10³, 10⁵, 10⁶, 10⁹ → thuật toán chạy kịp khoảng 10⁸ phép/giây | CSES 1094 Increasing Array · CSES 1069 Repetitions | ⬜ |
+| 2 | `time-limit` | Từ n ra thuật toán | From n to the algorithm | Bảng n = 10, 20, 10³, 10⁵, 10⁶, 10⁹ → thuật toán chạy kịp khoảng 10⁸ phép/giây | CSES 1094 Increasing Array · CSES 1069 Repetitions | ✅ |
 
 ### 02. Đệ quy & quay lui · Recursion & Backtracking · key `recursion` · Đợt 2
 
