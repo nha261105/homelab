@@ -77,7 +77,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `range-sum` | Tổng đoạn trong O(1) | Range sums in O(1) | Mảng `a` và hàng `pre` bên dưới; tổng `[l, r] = pre[r+1] − pre[l]` | CSES 1646 Static Range Sum Queries · LeetCode 303 | ✅ |
-| 2 | `prefix-2d` | Prefix sum 2 chiều | 2D prefix sums | Lưới 4×4, hình chữ nhật = lớn − trên − trái + góc | CSES 1652 Forest Queries · LeetCode 304 | ⬜ |
+| 2 | `prefix-2d` | Prefix sum 2 chiều | 2D prefix sums | Lưới 4×4, hình chữ nhật = lớn − trên − trái + góc | CSES 1652 Forest Queries · LeetCode 304 | ✅ |
 | 3 | `difference-array` | Mảng hiệu | Difference arrays | Cộng `+x` cho cả đoạn chỉ bằng 2 ô, rồi cộng dồn ra kết quả | LeetCode 1094 Car Pooling · CSES 1651 Range Update Queries | ⬜ |
 
 ### 05. Two Pointers · Two Pointers · key `two-pointers` · Đợt 1
