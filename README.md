@@ -22,7 +22,7 @@ npm run preview  # serve dist/
 
 ## Roadmap
 
-What to build next, chapter by chapter: [`docs/roadmap/cp.md`](docs/roadmap/cp.md) (Competitive Programming, 18 chapters, 53 lessons).
+What to build next, chapter by chapter: [`docs/roadmap/cp.md`](docs/roadmap/cp.md) (Competitive Programming: 3 levels, 28 chapters, 119 lessons).
 
 ## Add a lesson
 
