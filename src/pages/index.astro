@@ -1,0 +1,23 @@
+---
+// "/" → home in the language the visitor used last time (else from the browser, else Vietnamese).
+---
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HomeLab</title>
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="/vi/" />
+  <script is:inline>
+    (function () {
+      var l = null;
+      try { l = localStorage.getItem("homelab:lang"); } catch (e) {}
+      if (l !== "vi" && l !== "en") l = /^en\b/i.test(navigator.language || "") ? "en" : "vi";
+      location.replace("/" + l + "/");
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0;url=/vi/" /></noscript>
+</head>
+<body><a href="/vi/">HomeLab</a></body>
+</html>

@@ -1,0 +1,45 @@
+---
+import Icon from "./Icon.astro";
+import { TRACKS } from "../lib/catalog";
+import { UI, swapLang } from "../lib/i18n";
+import type { Lang, TrackKey } from "../lib/types";
+
+interface Props { lang: Lang; track?: TrackKey; hasSidebar?: boolean }
+const { lang, track, hasSidebar = true } = Astro.props;
+const t = UI[lang];
+const path = Astro.url.pathname;
+---
+<header class="topbar">
+  {hasSidebar && <button class="icon-btn drawer-btn" id="drawerBtn" aria-label={t.openMenu} aria-controls="sidebar" aria-expanded="false"><Icon name="menu" /></button>}
+  <a class="brand" href={`/${lang}/`}>
+    <span class="brand-mark"><Icon name="flask" size={18} /></span>
+    <span>Home<span class="brand-hl">Lab</span></span>
+  </a>
+
+  <nav class="tabs" aria-label={t.tracks}>
+    {TRACKS.map((x) => (
+      <a class="tab" href={`/${lang}/${x.key}/`} data-track={x.key} aria-current={x.key === track ? "page" : undefined}>
+        <Icon name={x.icon} />{x.short}
+      </a>
+    ))}
+  </nav>
+
+  <div class="top-tools">
+    <div class="search" id="search">
+      <Icon name="search" />
+      <input id="searchInput" type="search" placeholder={t.search} autocomplete="off" aria-label={t.search} />
+      <kbd>/</kbd>
+      <ul class="search-results" id="searchResults" role="listbox" hidden></ul>
+    </div>
+    <div class="menu-wrap">
+      <button class="pill-btn" id="langBtn" aria-haspopup="true" aria-expanded="false"><Icon name="globe" />{lang.toUpperCase()}<Icon name="chevron-down" size={14} /></button>
+      <div class="menu" id="langMenu" hidden>
+        <a href={swapLang(path, "vi")} id="langVi" aria-current={lang === "vi" ? "true" : undefined} lang="vi">Tiếng Việt <span>VI</span></a>
+        <a href={swapLang(path, "en")} id="langEn" aria-current={lang === "en" ? "true" : undefined} lang="en">English <span>EN</span></a>
+      </div>
+    </div>
+    <button class="icon-btn" id="themeBtn" aria-label={`${t.light} / ${t.dark}`}>
+      <span class="when-light"><Icon name="moon" /></span><span class="when-dark"><Icon name="sun" /></span>
+    </button>
+  </div>
+</header>

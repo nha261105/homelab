@@ -1,0 +1,90 @@
+---
+/* Home: a simple overview inside the app shell — what HomeLab is, the tracks, what was added. */
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import { TRACKS, allLessons, readyIn, isReady } from "../../lib/catalog";
+import { UI, nLessons } from "../../lib/i18n";
+import { LANGS, tr, type Lang } from "../../lib/types";
+
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const t = UI[lang];
+const lessons = allLessons();
+const featured = lessons[0];
+const topicTotal = TRACKS.reduce((n, tk) => n + tk.topics.length, 0);
+const added = [...lessons].sort((a, b) => b.added.localeCompare(a.added)).slice(0, 6);
+const fmt = (iso: string) => (iso ? new Date(iso).toLocaleDateString(lang === "vi" ? "vi-VN" : "en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }) : "");
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+<Base lang={lang} title="HomeLab" description={t.homeLead}>
+  <div class="overview">
+    <section class="card ov-hero">
+      <div class="ov-text">
+        <p class="crumbs">~/homelab <span class="cursor" aria-hidden="true"></span></p>
+        <h1>Home<span class="brand-hl">Lab</span></h1>
+        <p class="lead">{t.homeLead}</p>
+        <div class="pills">
+          <span class="pill"><Icon name="layers" size={13} />{TRACKS.length} {t.tracks.toLowerCase()}</span>
+          <span class="pill"><Icon name="folder" size={13} />{topicTotal} {t.chapters}</span>
+          <span class="pill"><Icon name="file" size={13} />{nLessons(lessons.length, lang)}</span>
+          <span class="pill"><Icon name="globe" size={13} />VI · EN</span>
+        </div>
+      </div>
+      {featured && (
+        <a class="ov-demo floor" href={featured.href(lang)} data-demo={featured.key} data-track={featured.track.key}>
+          <svg id="demoScene" aria-hidden="true"></svg>
+          <span class="ov-demo-cap"><span class="chip on">{featured.track.short}</span><span id="demoCaption">{tr(featured.lesson.title, lang)}</span></span>
+          <span class="btn3d primary sm">{t.tryIt}<Icon name="arrow-right" size={14} /></span>
+        </a>
+      )}
+    </section>
+
+    <ul class="track-grid">
+      {TRACKS.map((tk) => {
+        const n = readyIn(tk).length;
+        return (
+          <li class="card track-card" data-track={tk.key}>
+            <a class="tc-link" href={`/${lang}/${tk.key}/`}>
+              <span class="tc-ic"><Icon name={tk.icon} size={20} /></span>
+              <span class="tc-name">{tk.name}</span>
+              <span class="tc-blurb">{tk.blurb[lang]}</span>
+            </a>
+            <ol class="tc-chapters">
+              {tk.topics.slice(0, 5).map((tp, k) => {
+                const ready = tp.lessons.find((l) => isReady(tk, tp, l.slug));
+                return <li class={ready ? "on" : ""}><span class="mono">{pad(k + 1)}</span>{tp.title[lang]}</li>;
+              })}
+              {tk.topics.length > 5 && <li class="more">+{tk.topics.length - 5}</li>}
+            </ol>
+            <div class="tc-foot">
+              <span class="mono dim">{tk.topics.length} {t.chapters} · {n > 0 ? nLessons(n, lang) : t.soon}</span>
+              <a class="btn3d sm" href={`/${lang}/${tk.key}/`}>{t.openTrack}<Icon name="arrow-right" size={14} /></a>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+
+    <section class="card">
+      <header class="card-h"><Icon name="sparkles" />{t.recentlyAdded}</header>
+      <ul class="rows">
+        {added.map((l) => (
+          <li data-track={l.track.key}>
+            <a href={l.href(lang)}>
+              <span class="chip on">{l.track.short}</span>
+              <span class="r-main"><b>{tr(l.lesson.title, lang)}</b><span>{pad(l.topicNo)}. {l.topic.title[lang]} · {l.title[lang]}</span></span>
+              <span class="mono dim">{l.lesson.minutes} {t.minutes} · {l.lesson.steps.length} {t.stepsN}</span>
+              <time class="mono dim" datetime={l.added}>{fmt(l.added)}</time>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<script>
+  import { onEveryPage } from "../../lib/page";
+  import { initDemo } from "../../lib/home-demo";
+  onEveryPage("demo", initDemo);
+</script>

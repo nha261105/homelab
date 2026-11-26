@@ -1,0 +1,70 @@
+---
+/* App shell (every page): top bar · course tree · main · optional right column (slot "aside"). */
+// fonts ship with the site (no Google Fonts round trip on every page)
+import "@fontsource-variable/lexend";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/700.css";
+import "../styles/tokens.css";
+import "../styles/shell.css";
+import "../styles/lesson.css";
+import { ClientRouter } from "astro:transitions";
+import TopBar from "../components/TopBar.astro";
+import Sidebar from "../components/Sidebar.astro";
+import { TRACKS, findTrack, isReady, lessonHref } from "../lib/catalog";
+import type { Lang, TrackKey } from "../lib/types";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  track?: TrackKey;
+  /** "track/topic/slug" of the open lesson. */
+  lesson?: string;
+}
+const { lang, title, description, track, lesson } = Astro.props;
+const trackObj = track ? findTrack(track) : undefined;
+const hasAside = Astro.slots.has("aside");
+// each track tab has its own course tree; the home page has none
+const hasSidebar = !!trackObj;
+
+// search index: every topic and lesson (ready ones link to the lesson, others to the track page)
+const index = TRACKS.flatMap((tk) => tk.topics.flatMap((tp) => tp.lessons.map((l) => {
+  const ready = isReady(tk, tp, l.slug);
+  return { t: l.title[lang], s: `${tk.short} · ${tp.title[lang]}`, h: ready ? lessonHref(lang, tk.key, tp.key, l.slug) : `/${lang}/${tk.key}/`, r: ready ? 1 : 0, k: tk.key };
+})));
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- saved theme before first paint, and again after every client-side page swap -->
+  <script is:inline>
+    (function () {
+      var apply = function () { try { var t = localStorage.getItem("homelab:theme"); if (t === "dark" || t === "light") document.documentElement.dataset.theme = t; } catch (e) {} };
+      apply();
+      if (!window.__hlTheme) { window.__hlTheme = 1; document.addEventListener("astro:after-swap", apply); }
+    })();
+  </script>
+  <!-- swap pages in place instead of full reloads; links are prefetched on hover -->
+  <ClientRouter />
+</head>
+<body>
+  <div class:list={["app", { "no-aside": !hasAside, "no-side": !hasSidebar }]} id="app" data-track={track ?? "cp"} data-lesson={lesson}>
+    <TopBar lang={lang} track={track} hasSidebar={hasSidebar} />
+    {trackObj && <Sidebar lang={lang} track={trackObj} current={lesson} />}
+    <main class="main" id="main"><slot /></main>
+    {hasAside && <aside class="aside" id="aside"><slot name="aside" /></aside>}
+  </div>
+  <script type="application/json" id="searchIndex" set:html={JSON.stringify(index)} />
+  <script>
+    import { onEveryPage } from "../lib/page";
+    import { initShell } from "../lib/shell";
+    onEveryPage("shell", initShell);
+  </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+---
+import Base from "../../../../layouts/Base.astro";
+import Icon from "../../../../components/Icon.astro";
+import { allLessons, getLesson, lessonKey } from "../../../../lib/catalog";
+import { UI } from "../../../../lib/i18n";
+import { LANGS, tr, type Lang } from "../../../../lib/types";
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) =>
+    allLessons().map(({ track, topic, slug, topicNo }) => ({
+      params: { lang, track: track.key, topic: topic.key, lesson: slug },
+      props: { track, topic, topicNo },
+    })),
+  );
+}
+
+const { lang, track: trackKey, topic: topicKey, lesson: slug } = Astro.params as { lang: Lang; track: string; topic: string; lesson: string };
+const { track, topic, topicNo } = Astro.props;
+const { lesson: L } = getLesson(trackKey, topicKey, slug)!;
+const t = UI[lang];
+const first = L.steps[0];
+const lessonNo = topic.lessons.findIndex((l) => l.slug === slug) + 1;
+const pad = (n: number) => String(n).padStart(2, "0");
+const kindLabel = (k: string) => t[`k${k}` as keyof typeof t];
+---
+<Base lang={lang} track={track.key} title={`${tr(L.title, lang)} · HomeLab`} description={L.summary[lang]} lesson={lessonKey(trackKey, topicKey, slug)}>
+  <article class="card lesson">
+    <header class="l-head">
+      <div>
+        <p class="crumbs"><a href={`/${lang}/${track.key}/`}>{pad(topicNo)}. {topic.title[lang]}</a><span>/</span><span>{t.lessonOf} {lessonNo} {t.of} {topic.lessons.length}</span></p>
+        <h1>{tr(L.title, lang)}</h1>
+        <p class="l-sum">{L.summary[lang]}</p>
+      </div>
+      <div class="pills">
+        <span class="pill p-time"><Icon name="clock" size={13} />{L.minutes} {t.minutes}</span>
+        <span class="pill p-level"><Icon name="signal" size={13} />{t[`lv${L.level}` as keyof typeof t]}</span>
+        <span class="pill p-steps"><Icon name="list" size={13} />{L.steps.length} {t.stepsN}</span>
+      </div>
+    </header>
+
+    <section class="stage floor" aria-label={tr(L.title, lang)}>
+      <div class="stage-bar">
+        <div class="stats">
+          {L.watch.map((w) => (
+            <div class="stat"><span class="stat-k">{tr(w.label, lang)}</span><span class="stat-v" data-w={w.key}>—</span></div>
+          ))}
+        </div>
+        <div class="stage-ctl">
+          <button class="pill-btn" id="replay"><Icon name="replay" size={14} />{t.replay}</button>
+          <button class="pill-btn" id="play"><span class="when-paused"><Icon name="play" size={13} />{t.playShort}</span><span class="when-playing"><Icon name="pause" size={13} />{t.pauseShort}</span></button>
+          <button class="pill-btn icon-only" id="copyLink" aria-label={t.copyLink} title={t.copyLink}><Icon name="link" size={14} /></button>
+        </div>
+      </div>
+      <p class="goal" set:html={L.goal[lang]} />
+      <svg id="scene" role="img" aria-labelledby="stepTitle"></svg>
+      {L.legend && (
+        <ul class="legend">
+          {L.legend.map((g) => <li class={`lg-${g.cls}`}><i></i>{g.label[lang]}</li>)}
+        </ul>
+      )}
+    </section>
+
+    <nav class="stepper" aria-label={t.inLesson}>
+      <div class="stepper-head">
+        <span class="eyebrow">{t.inLesson}</span>
+        <span class="dim"><kbd>←</kbd><kbd>→</kbd> {t.toStep} · {t.step} <b id="stepNo">1</b> {t.of} {L.steps.length}</span>
+      </div>
+      <div class="stepper-row">
+        <button class="round-btn" id="prevArrow" aria-label={t.back}><Icon name="chevron-left" size={16} /></button>
+        <ol id="stepList">
+          {L.steps.map((s, k) => (
+            <li><button data-go={k} class={k === 0 ? "cur" : ""}><span class="dot">{k + 1}</span><span class="lbl">{s.title[lang]}</span></button></li>
+          ))}
+        </ol>
+        <button class="round-btn" id="nextArrow" aria-label={t.nextLabel}><Icon name="chevron-right" size={16} /></button>
+      </div>
+    </nav>
+  </article>
+
+  <Fragment slot="aside">
+    <section class="card step-card" aria-live="polite">
+      <div class="sc-top">
+        <span class="eyebrow">{t.step} <span id="scNo">1</span> / {L.steps.length}</span>
+        <span class={`kind k-${first.kind}`} id="scKind">{kindLabel(first.kind)}</span>
+      </div>
+      <h2 id="stepTitle">{first.title[lang]}</h2>
+      <div class="sc-body" id="stepBody" set:html={first.body[lang]} />
+      <div class="note" id="note" hidden={!first.note}>
+        <span class="note-ic"><Icon name="bulb" /></span>
+        <div><span class="eyebrow">{t.keyIdea}</span><p id="noteText">{first.note?.[lang]}</p></div>
+      </div>
+      <div class="sc-nav">
+        <button class="btn3d" id="prev" disabled><Icon name="arrow-left" size={15} />{t.back}</button>
+        <button class="btn3d primary" id="next"><span id="nextText">{t.nextLabel}: {L.steps[1]?.title[lang]}</span><Icon name="arrow-right" size={15} /></button>
+      </div>
+    </section>
+
+    <section class="card code-card">
+      <header class="card-h"><Icon name="code" />{t.code} {L.codeLang.replace(/\d+$/, "")}<span class="dim mono">{L.time} · {L.memory}</span></header>
+      <pre class="code" id="code"><span class="caret" id="caret"></span>{L.code.map((ln, k) => <span class="ln"><span class="no">{k + 1}</span><Fragment set:html={ln} /></span>)}</pre>
+    </section>
+
+    <section class="card">
+      <header class="card-h"><Icon name="target" />{t.practice}</header>
+      <ul class="probs">
+        {L.practice.map((p) => (
+          <li><a href={p.url} target="_blank" rel="noopener"><span>{p.name}</span><span class="src">{p.src} · {p.lv}</span></a></li>
+        ))}
+      </ul>
+    </section>
+  </Fragment>
+</Base>
+
+<script>
+  import { onEveryPage } from "../../../../lib/page";
+  import { initLesson } from "../../../../lib/lesson-client";
+  onEveryPage("lesson", initLesson);
+</script>

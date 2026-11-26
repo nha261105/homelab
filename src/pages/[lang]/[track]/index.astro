@@ -1,0 +1,71 @@
+---
+/* Track overview inside the shell: what the track is, progress, and every chapter with its lessons. */
+import Base from "../../../layouts/Base.astro";
+import Icon from "../../../components/Icon.astro";
+import { TRACKS, readyIn, isReady, lessonHref, lessonKey } from "../../../lib/catalog";
+import { UI, nLessons } from "../../../lib/i18n";
+import { LANGS, tr, type Lang } from "../../../lib/types";
+
+export const getStaticPaths = () =>
+  LANGS.flatMap((lang) => TRACKS.map((track) => ({ params: { lang, track: track.key }, props: { track } })));
+
+const lang = Astro.params.lang as Lang;
+const { track } = Astro.props;
+const t = UI[lang];
+const ready = readyIn(track);
+const first = ready[0];
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+<Base lang={lang} track={track.key} title={`${track.name} · HomeLab`} description={track.blurb[lang]}>
+  <div class="overview">
+    <section class="card ov-hero track-head" data-prog-keys={ready.map((l) => l.key).join(",")}>
+      <div class="ov-text">
+        <p class="crumbs"><a href={`/${lang}/`}>~/homelab</a><span>/</span><span>{track.key}</span></p>
+        <h1><span class="tc-ic"><Icon name={track.icon} size={22} /></span>{track.name}</h1>
+        <p class="lead">{track.blurb[lang]}</p>
+        <div class="pills">
+          <span class="pill"><Icon name="folder" size={13} />{track.topics.length} {t.chapters}</span>
+          <span class="pill"><Icon name="file" size={13} />{ready.length ? nLessons(ready.length, lang) : t.soon}</span>
+        </div>
+      </div>
+      <div class="th-side">
+        <div class="th-prog">
+          <span class="eyebrow">{t.progress}</span>
+          <span class="bar"><i data-prog-bar style="width:0%"></i></span>
+          <span class="mono"><b data-prog-done>0</b> / {ready.length} {t.doneLessons}</span>
+        </div>
+        {first
+          ? <a class="btn3d primary" href={first.href(lang)}>{t.startWith}: {tr(first.lesson.title, lang)}<Icon name="arrow-right" size={15} /></a>
+          : <p class="note-soft">{t.preparing}</p>}
+      </div>
+    </section>
+
+    <ol class="chapter-grid">
+      {track.topics.map((tp, k) => {
+        const keys = tp.lessons.filter((l) => isReady(track, tp, l.slug)).map((l) => lessonKey(track.key, tp.key, l.slug));
+        return (
+          <li class="card chapter" style={`--fc: var(--fold-${k % 5})`} data-topic-keys={keys.join(",")}>
+            <header>
+              <Icon name="folder" class="fold-ic" size={18} />
+              <h2>{pad(k + 1)}. {tp.title[lang]}</h2>
+              <span class="mono dim">{keys.length}/{tp.lessons.length}</span>
+            </header>
+            <p class="ch-desc">{tp.desc[lang]}</p>
+            <ul class="ch-lessons">
+              {tp.lessons.map((l) => {
+                const key = lessonKey(track.key, tp.key, l.slug);
+                return isReady(track, tp, l.slug) ? (
+                  <li data-lesson-key={key}>
+                    <a href={lessonHref(lang, track.key, tp.key, l.slug)}><span class="st"></span><span>{l.title[lang]}</span><Icon name="arrow-right" size={14} /></a>
+                  </li>
+                ) : (
+                  <li class="soon"><span><span class="st"></span><span>{l.title[lang]}</span><em>{t.soon}</em></span></li>
+                );
+              })}
+            </ul>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</Base>

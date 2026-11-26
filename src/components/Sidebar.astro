@@ -1,0 +1,61 @@
+---
+/* Left column: the course tree of one track — chapters (topics) → lessons.
+   Progress counts are filled in by the client (src/lib/shell.ts). */
+import Icon from "./Icon.astro";
+import { isReady, lessonHref, lessonKey, readyIn, type Track } from "../lib/catalog";
+import { UI } from "../lib/i18n";
+import type { Lang } from "../lib/types";
+
+interface Props { lang: Lang; track: Track; current?: string }
+const { lang, track, current } = Astro.props;
+const t = UI[lang];
+const pad = (n: number) => String(n).padStart(2, "0");
+const readyKeys = (tpKey?: string) =>
+  track.topics.filter((tp) => !tpKey || tp.key === tpKey).flatMap((tp) => tp.lessons.filter((l) => isReady(track, tp, l.slug)).map((l) => lessonKey(track.key, tp.key, l.slug)));
+const allKeys = readyKeys();
+const total = readyIn(track).length;
+---
+<aside class="sidebar" id="sidebar">
+  <div class="side-head">
+    <span><Icon name={track.icon} />{track.name}</span>
+    <span class="dim">{total} {total === 1 ? t.lesson : t.lessons}</span>
+  </div>
+
+  <nav class="tree">
+    {track.topics.map((tp, k) => {
+      const keys = readyKeys(tp.key);
+      const open = tp.lessons.some((l) => lessonKey(track.key, tp.key, l.slug) === current) || (!current && keys.length > 0);
+      return (
+        <details class="folder" open={open} style={`--fc: var(--fold-${k % 5})`} data-prog-keys={keys.join(",")}>
+          <summary>
+            <Icon name="chevron-right" size={14} class="chev" />
+            <Icon name="folder" class="fold-ic" />
+            <span class="f-name">{pad(k + 1)}. {tp.title[lang]}</span>
+            <span class="f-count"><b data-prog-done>0</b>/{tp.lessons.length}</span>
+          </summary>
+          <ul>
+            {tp.lessons.map((l) => {
+              const key = lessonKey(track.key, tp.key, l.slug);
+              return isReady(track, tp, l.slug) ? (
+                <li data-lesson-key={key}>
+                  <a class="file" href={lessonHref(lang, track.key, tp.key, l.slug)} aria-current={key === current ? "page" : undefined}>
+                    <Icon name="file" /><span>{l.title[lang]}</span><Icon name="check" size={14} class="done-ic" />
+                  </a>
+                </li>
+              ) : (
+                <li><span class="file soon"><Icon name="file" /><span>{l.title[lang]}</span><em>{t.soon}</em></span></li>
+              );
+            })}
+          </ul>
+        </details>
+      );
+    })}
+  </nav>
+
+  <div class="side-progress" data-prog-keys={allKeys.join(",")}>
+    <span>{t.progress}</span>
+    <span class="bar"><i data-prog-bar style="width:0%"></i></span>
+    <span class="mono"><b data-prog-done>0</b> / {allKeys.length}</span>
+  </div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>

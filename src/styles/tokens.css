@@ -1,0 +1,101 @@
+/* HomeLab design tokens — palette: black · white · navy · wine (+ gold, forest as supporting colours).
+   Light is the base; dark redefines the same tokens (system setting OR data-theme="dark").
+   Every text/background pair is >= 4.5:1 (WCAG AA) in both themes — re-check if you change a value.
+
+   Roles:
+     --acc   navy  → everything interactive: current step, buttons, pointers, frames, active cells
+     --wine  wine  → brand mark, code keywords, AND "wrong / too big" (--wa)
+     --ac    forest→ correct / ACCEPTED        --tle gold → running / too small
+   Track colours (--trk) only tint the track tab & brand; they never replace --acc. */
+:root {
+  --font-ui: "Lexend Variable", "Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --bg: #f5f5f4;          /* page */
+  --panel: #ffffff;       /* panes, cards */
+  --panel-2: #efeff0;     /* inset: code, tags, buttons */
+  --fg: #0e1015;          /* near-black */
+  --dim: #5c606b;
+  --line: #e2e3e6;
+  --shadow: #0e1015;      /* floor shadows in scenes */
+  --cell: #ffffff;        /* scene block face */
+  --cell-side: #cfd2d9;   /* scene block edge / depth */
+  --dot: #d3d5db;         /* stage floor grid */
+
+  --navy: #1e3a6e;  --navy-soft: #e6ecf7;
+  --wine: #8c1d3c;  --wine-soft: #f7e6ea;
+  --gold: #865a00;  --gold-soft: #f8eed6;
+  --forest: #17713f; --forest-soft: #e2f1e7;
+
+  /* verdict colours = semantic */
+  --ac: var(--forest); --ac-soft: var(--forest-soft);   /* correct / found */
+  --wa: var(--wine);   --wa-soft: var(--wine-soft);     /* wrong / too big / dropped */
+  --tle: var(--gold);  --tle-soft: var(--gold-soft);    /* pending / too small / running */
+  --hl: #fbf1d5;                                         /* running code line, value flash */
+
+  /* syntax */
+  --kw: var(--wine); --num: var(--navy); --com: #636874; --str: var(--forest);
+
+  /* accent (interactive) + track tint */
+  --acc: var(--navy); --acc-soft: var(--navy-soft);
+  --acc-solid: #1e3a6e; --on-acc: #ffffff;   /* filled controls: buttons, pointers, current step */
+  --trk: var(--navy); --trk-soft: var(--navy-soft);
+
+  /* chunky controls: dark edge + offset shadow */
+  --edge: #2b2f3a; --acc-ink: #1e3a6e; --acc-edge: #1e3a6e;
+  /* chapter folder colours in the course tree */
+  --fold-0: #2f5299; --fold-1: #a33355; --fold-2: #b07a12; --fold-3: #1f8a52; --fold-4: #5d6b86;
+
+  --r-pane: 12px; --r-ctl: 8px; --r-chip: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0c0f; --panel: #121419; --panel-2: #1a1d24; --fg: #eceef2; --dim: #9599a6; --line: #252932; --shadow: #000000;
+    --cell: #181b22; --cell-side: #2c313c; --dot: #22262f;
+    --navy: #8fb0ee; --navy-soft: #172440; --wine: #e98aa3; --wine-soft: #3a1621;
+    --gold: #e6b450; --gold-soft: #33270f; --forest: #5fcf8e; --forest-soft: #12301f;
+    --hl: #2a2415; --com: #80869a; --num: #e6b450; --acc-solid: #2f5299;
+    --edge: #4a5266; --acc-ink: #c9d8f7; --acc-edge: #8fb0ee;
+    --fold-0: #8fb0ee; --fold-1: #e98aa3; --fold-2: #e6b450; --fold-3: #5fcf8e; --fold-4: #9aa6bd;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0c0f; --panel: #121419; --panel-2: #1a1d24; --fg: #eceef2; --dim: #9599a6; --line: #252932; --shadow: #000000;
+  --cell: #181b22; --cell-side: #2c313c; --dot: #22262f;
+  --navy: #8fb0ee; --navy-soft: #172440; --wine: #e98aa3; --wine-soft: #3a1621;
+  --gold: #e6b450; --gold-soft: #33270f; --forest: #5fcf8e; --forest-soft: #12301f;
+  --hl: #2a2415; --com: #80869a; --num: #e6b450; --acc-solid: #2f5299;
+    --edge: #4a5266; --acc-ink: #c9d8f7; --acc-edge: #8fb0ee;
+    --fold-0: #8fb0ee; --fold-1: #e98aa3; --fold-2: #e6b450; --fold-3: #5fcf8e; --fold-4: #9aa6bd;
+  color-scheme: dark;
+}
+/* track tint: CP navy · SWE wine · AI gold · Papers forest */
+[data-track="cp"]    { --trk: var(--navy);   --trk-soft: var(--navy-soft); }
+[data-track="swe"]   { --trk: var(--wine);   --trk-soft: var(--wine-soft); }
+[data-track="ai"]    { --trk: var(--gold);   --trk-soft: var(--gold-soft); }
+[data-track="paper"] { --trk: var(--forest); --trk-soft: var(--forest-soft); }
+
+/* ---------- scene vocabulary (SVG). Colours live here, motion lives in the engine. ---------- */
+.hl-shadow { fill: var(--shadow); }
+.hl-block .face { fill: var(--cell); stroke: var(--cell-side); stroke-width: 2; transition: fill .3s, stroke .3s; }
+.hl-block .side { fill: var(--cell-side); transition: fill .3s; }
+.hl-block .label { font: 700 19px var(--font-mono); fill: var(--fg); transition: fill .3s; }
+.hl-block .sub { font: 500 10.5px var(--font-mono); fill: var(--dim); }
+.hl-pill .bg { fill: var(--panel); stroke: var(--cell-side); stroke-width: 1.2; }
+.hl-pill .label { font: 700 12.5px var(--font-mono); fill: var(--fg); }
+.hl-pointer .tip, .hl-pointer .bg { fill: var(--acc-solid); }
+.hl-pointer .label { font: 700 12.5px var(--font-mono); fill: var(--on-acc); }
+.hl-frame .bg { fill: var(--acc-soft); stroke: var(--acc); stroke-width: 2; stroke-dasharray: 6 5; transition: fill .3s, stroke .3s; }
+.hl-link path { fill: none; stroke: var(--acc); stroke-width: 2.2; stroke-linecap: round; transition: stroke .3s; }
+
+/* state classes shared by every track */
+.is-active .face { fill: var(--acc-soft); stroke: var(--acc); }
+.is-active .side { fill: var(--acc); }
+.is-active .label { fill: var(--acc); }
+.is-bad .face { fill: var(--wa-soft); stroke: var(--wa); } .is-bad .label { fill: var(--wa); } .is-bad .side { fill: var(--wa); }
+.is-out .face { fill: var(--bg); stroke: var(--dim); stroke-dasharray: 5 4; } .is-out .side { fill: var(--line); } .is-out .label { fill: var(--dim); }
+.is-good .face { fill: var(--ac-soft); stroke: var(--ac); } .is-good .side { fill: var(--ac); } .is-good .label { fill: var(--ac); }
+.hl-frame.is-good .bg { fill: var(--ac-soft); stroke: var(--ac); }
+.hl-link.v-gt path { stroke: var(--wa); } .hl-link.v-lt path { stroke: var(--tle); } .hl-link.v-eq path { stroke: var(--ac); }
+.hl-pill.v-gt .label { fill: var(--wa); } .hl-pill.v-lt .label { fill: var(--tle); } .hl-pill.v-eq .label { fill: var(--ac); }
