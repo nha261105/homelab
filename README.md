@@ -20,6 +20,10 @@ npm run preview  # serve dist/
 `/{lang}/` home · `/{lang}/{track}/` topics · `/{lang}/{track}/{topic}/{lesson}#step-N` a lesson at step N.
 `/` redirects to the language used last time.
 
+## Roadmap
+
+What to build next, chapter by chapter: [`docs/roadmap/cp.md`](docs/roadmap/cp.md) (Competitive Programming, 18 chapters, 53 lessons).
+
 ## Add a lesson
 
 1. Create `src/lessons/{track}/{topic}/{slug}.ts` (copy `src/lessons/cp/two-pointers/pair-sum.ts`).
