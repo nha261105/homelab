@@ -97,5 +97,6 @@
 .is-out .face { fill: var(--bg); stroke: var(--dim); stroke-dasharray: 5 4; } .is-out .side { fill: var(--line); } .is-out .label { fill: var(--dim); }
 .is-good .face { fill: var(--ac-soft); stroke: var(--ac); } .is-good .side { fill: var(--ac); } .is-good .label { fill: var(--ac); }
 .hl-frame.is-good .bg { fill: var(--ac-soft); stroke: var(--ac); }
+.hl-frame.is-bad .bg { fill: var(--wa-soft); stroke: var(--wa); }
 .hl-link.v-gt path { stroke: var(--wa); } .hl-link.v-lt path { stroke: var(--tle); } .hl-link.v-eq path { stroke: var(--ac); }
 .hl-pill.v-gt .label { fill: var(--wa); } .hl-pill.v-lt .label { fill: var(--tle); } .hl-pill.v-eq .label { fill: var(--ac); }

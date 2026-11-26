@@ -1,4 +1,5 @@
 import type { L10n, Lesson, LessonModule, TrackKey } from "./types";
+import { CP_ROADMAP } from "./roadmap";
 
 /** Whose lab this is. */
 export const OWNER = { name: "Hoàng Anh", handle: "nha261105" };
@@ -9,7 +10,7 @@ export const OWNER = { name: "Hoàng Anh", handle: "nha261105" };
  * listed-but-missing lessons show as "coming soon" in the tree.
  */
 export interface LessonRef { slug: string; title: L10n; added?: string }
-export interface Topic { key: string; title: L10n; desc: L10n; lessons: LessonRef[] }
+export interface Topic { key: string; title: L10n; desc?: L10n; level?: number; lessons: LessonRef[] }
 export interface Track { key: TrackKey; name: string; short: string; icon: string; blurb: L10n; topics: Topic[] }
 
 const L = (slug: string, vi: string, en: string, added?: string): LessonRef => ({ slug, title: { vi, en }, added });
@@ -23,29 +24,8 @@ export const TRACKS: Track[] = [
       vi: "Cấu trúc dữ liệu & giải thuật cho thi đấu: mỗi kỹ thuật một ví dụ nhỏ, chạy từng bước, kèm code C++ và bài luyện.",
       en: "Data structures & algorithms for contests: one small example per technique, step by step, with C++ code and practice problems.",
     },
-    topics: [
-      T("complexity", "Độ phức tạp & Big-O", "Complexity & Big-O",
-        "Ước lượng thuật toán có kịp time limit không trước khi code.", "Tell whether an algorithm fits the time limit before you code it.",
-        [L("big-o", "Đếm bước, không đếm giây", "Count steps, not seconds")]),
-      T("prefix-sum", "Prefix Sum", "Prefix Sum",
-        "Tính trước tổng tiền tố để trả lời tổng đoạn trong O(1).", "Precompute running sums to answer range sums in O(1).",
-        [L("range-sum", "Tổng đoạn trong O(1)", "Range sums in O(1)"), L("prefix-2d", "Prefix sum 2 chiều", "2D prefix sums")]),
-      T("two-pointers", "Two Pointers", "Two Pointers",
-        "Hai con trỏ đi về phía nhau trên mảng đã sắp xếp, mỗi bước loại một phần tử.", "Two indices walk toward each other on a sorted array, dropping one element per step.",
-        [L("pair-sum", "Tìm cặp có tổng bằng target", "Pair with a target sum", "2026-11-26"), L("remove-dupes", "Xoá phần tử trùng tại chỗ", "Remove duplicates in place")]),
-      T("sliding-window", "Sliding Window", "Sliding Window",
-        "Giữ một cửa sổ liên tục, thêm bên phải, bớt bên trái.", "Keep a contiguous window: grow on the right, shrink on the left.",
-        [L("fixed-window", "Cửa sổ độ dài k", "Fixed-size window"), L("longest-unique", "Chuỗi con dài nhất không lặp", "Longest substring without repeats")]),
-      T("binary-search", "Binary Search", "Binary Search",
-        "Chia đôi khoảng tìm kiếm, kể cả tìm kiếm trên đáp án.", "Halve the search range — including binary search on the answer.",
-        [L("lower-bound", "lower_bound từng bước", "lower_bound step by step"), L("answer-search", "Chặt nhị phân đáp án", "Binary search on the answer")]),
-      T("graphs", "Đồ thị: BFS / DFS", "Graphs: BFS / DFS",
-        "Duyệt đồ thị theo lớp và theo chiều sâu, đường đi ngắn nhất không trọng số.", "Traverse by layers and by depth; unweighted shortest paths.",
-        [L("bfs-grid", "BFS trên lưới", "BFS on a grid"), L("dfs-components", "Đếm thành phần liên thông", "Counting components")]),
-      T("dp", "Quy hoạch động", "Dynamic Programming",
-        "Chia bài toán thành trạng thái nhỏ và lưu lại kết quả.", "Break a problem into small states and remember their answers.",
-        [L("stairs", "Leo cầu thang", "Climbing stairs"), L("knapsack", "Cái túi 0/1", "0/1 knapsack")]),
-    ],
+    // CP chapters and lessons come from docs/roadmap/cp.md
+    topics: CP_ROADMAP.map((c) => ({ key: c.key, title: c.title, level: c.level, lessons: c.lessons })),
   },
   {
     key: "swe", name: "Software Engineering", short: "SWE", icon: "server",
@@ -114,7 +94,7 @@ export function allLessons(): ReadyLesson[] {
     t.topics.flatMap((tp, k) =>
       tp.lessons.flatMap((l) => {
         const mod = getLesson(t.key, tp.key, l.slug);
-        return mod ? [{ key: lessonKey(t.key, tp.key, l.slug), track: t, topic: tp, topicNo: k + 1, slug: l.slug, title: l.title, added: l.added ?? "", lesson: mod.lesson, href: (lang: string) => lessonHref(lang, t.key, tp.key, l.slug) }] : [];
+        return mod ? [{ key: lessonKey(t.key, tp.key, l.slug), track: t, topic: tp, topicNo: k + 1, slug: l.slug, title: l.title, added: mod.lesson.added ?? l.added ?? "", lesson: mod.lesson, href: (lang: string) => lessonHref(lang, t.key, tp.key, l.slug) }] : [];
       }),
     ),
   );

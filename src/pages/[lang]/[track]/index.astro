@@ -50,7 +50,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
               <h2>{pad(k + 1)}. {tp.title[lang]}</h2>
               <span class="mono dim">{keys.length}/{tp.lessons.length}</span>
             </header>
-            <p class="ch-desc">{tp.desc[lang]}</p>
+            {tp.desc && <p class="ch-desc">{tp.desc[lang]}</p>}
             <ul class="ch-lessons">
               {tp.lessons.map((l) => {
                 const key = lessonKey(track.key, tp.key, l.slug);

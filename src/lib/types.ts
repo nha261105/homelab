@@ -37,6 +37,8 @@ export interface Lesson {
   topic: string;
   slug: string;
   title: L10n;
+  /** Date the lesson was published (YYYY-MM-DD), shown under "Recently added". */
+  added: string;
   /** One line under the title. */
   summary: L10n;
   level: "basic" | "medium" | "hard";

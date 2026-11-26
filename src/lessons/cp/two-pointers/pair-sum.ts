@@ -29,6 +29,7 @@ export const lesson: Lesson = {
   topic: "two-pointers",
   slug: "pair-sum",
   title: { vi: "Two Pointers", en: "Two Pointers" },
+  added: "2026-11-26",
   summary: {
     vi: "Hai con trỏ đi về phía nhau trên mảng đã sắp xếp — mỗi bước loại hẳn một phần tử.",
     en: "Two indices walk toward each other on a sorted array — every step rules one element out.",
