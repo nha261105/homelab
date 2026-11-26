@@ -16,10 +16,11 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 - **Trạng thái:** ✅ xong · 🚧 đang làm · ⬜ chưa làm
 - **Một bài = một commit** (`lesson(cp): <slug> — <tên bài>`), để lịch sử commit cho thấy tiến độ.
+- **Tiêu đề chương** có dạng `### NN. Tên tiếng Việt · English name · key \`key\` · Đợt N`.
+  Site đọc thẳng file này để dựng cây thư mục CP, nên **giữ đúng định dạng tiêu đề và bảng**.
 - **Đường dẫn bài:** `src/lessons/cp/{key chương}/{slug}.ts` → URL `/vi/cp/{key chương}/{slug}`.
   Key chương không đổi kể cả khi đánh số lại chương, nên URL cũ vẫn giữ được.
-- Khi bắt đầu một chương, thêm chương và các bài của nó vào `src/lib/catalog.ts`.
-  Bài chưa có file sẽ hiện "Sắp có" trong cây thư mục.
+- Mọi bài trong file này tự hiện trong cây thư mục; bài chưa có file `.ts` hiện "Sắp có".
 - Cột **Sơ đồ** ghi ví dụ cụ thể sẽ dựng thành animation. Cột **Luyện tập** là 2–3 bài thật, xếp từ dễ đến khó.
 - Có thể làm xen kẽ giữa các chương cùng cấp, nhưng **đừng nhảy cấp**: bài ở cấp sau dùng kiến thức của cấp trước.
 
@@ -47,14 +48,14 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 # Cấp 1 — Nền tảng
 
-### 01. Độ phức tạp & Big-O · key `complexity` · Đợt 1
+### 01. Độ phức tạp & Big-O · Complexity & Big-O · key `complexity` · Đợt 1
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `big-o` | Đếm bước, không đếm giây | Count steps, not seconds | 4 cột khối O(1), O(log n), O(n), O(n²); tăng n = 2 → 4 → 8, cột O(n²) vọt lên | CSES 1068 Weird Algorithm · CSES 1083 Missing Number | ⬜ |
 | 2 | `time-limit` | Từ n ra thuật toán | From n to the algorithm | Bảng n = 10, 20, 10³, 10⁵, 10⁶, 10⁹ → thuật toán chạy kịp khoảng 10⁸ phép/giây | CSES 1094 Increasing Array · CSES 1069 Repetitions | ⬜ |
 
-### 02. Đệ quy & quay lui · key `recursion` · Đợt 2
+### 02. Đệ quy & quay lui · Recursion & Backtracking · key `recursion` · Đợt 2
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -62,7 +63,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `subsets` | Sinh tập con | Generating subsets | Cây chọn / không chọn cho `{1,2,3}`, mỗi lá là một tập con | LeetCode 78 · CSES 1623 Apple Division | ⬜ |
 | 3 | `n-queens` | Quay lui: đặt hậu | Backtracking: N-Queens | Bàn 4×4, đặt hậu từng hàng, xung đột thì lùi lại | LeetCode 51 · CSES 1624 Chessboard and Queens | ⬜ |
 
-### 03. Sắp xếp & tham lam · key `sorting` · Đợt 2
+### 03. Sắp xếp & tham lam · Sorting & Greedy · key `sorting` · Đợt 2
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -71,15 +72,15 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 3 | `sweep-events` | Quét sự kiện | Sweeping events | Khách vào/ra thành các điểm +1/−1 trên trục thời gian | CSES 1619 Restaurant Customers · CSES 1074 Stick Lengths | ⬜ |
 | 4 | `exchange-argument` | Chứng minh tham lam bằng hoán đổi | Exchange arguments | Hai việc kề nhau: đổi chỗ không làm tệ hơn → thứ tự tối ưu | CSES 1630 Tasks and Deadlines · CSES 1073 Towers | ⬜ |
 
-### 04. Prefix Sum · key `prefix-sum` · Đợt 1
+### 04. Prefix Sum · Prefix Sums · key `prefix-sum` · Đợt 1
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `range-sum` | Tổng đoạn trong O(1) | Range sums in O(1) | Mảng `a` và hàng `pre` bên dưới; tổng `[l, r] = pre[r+1] − pre[l]` | CSES 1646 Static Range Sum Queries · LeetCode 303 | ⬜ |
+| 1 | `range-sum` | Tổng đoạn trong O(1) | Range sums in O(1) | Mảng `a` và hàng `pre` bên dưới; tổng `[l, r] = pre[r+1] − pre[l]` | CSES 1646 Static Range Sum Queries · LeetCode 303 | ✅ |
 | 2 | `prefix-2d` | Prefix sum 2 chiều | 2D prefix sums | Lưới 4×4, hình chữ nhật = lớn − trên − trái + góc | CSES 1652 Forest Queries · LeetCode 304 | ⬜ |
 | 3 | `difference-array` | Mảng hiệu | Difference arrays | Cộng `+x` cho cả đoạn chỉ bằng 2 ô, rồi cộng dồn ra kết quả | LeetCode 1094 Car Pooling · CSES 1651 Range Update Queries | ⬜ |
 
-### 05. Two Pointers · key `two-pointers` · Đợt 1
+### 05. Two Pointers · Two Pointers · key `two-pointers` · Đợt 1
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -87,7 +88,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `remove-dupes` | Xoá phần tử trùng tại chỗ | Remove duplicates in place | Con trỏ đọc `i` chạy trước, con trỏ ghi `k` chỉ tiến khi gặp số mới | LeetCode 26 · CSES 1090 Ferris Wheel | ⬜ |
 | 3 | `three-sum` | Ba số có tổng cho trước | Three numbers with a given sum | Cố định `i`, chạy Two Pointers trên phần còn lại | LeetCode 15 · CSES 1641 Sum of Three Values · CSES 1642 | ⬜ |
 
-### 06. Sliding Window · key `sliding-window` · Đợt 1
+### 06. Sliding Window · Sliding Window · key `sliding-window` · Đợt 1
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -95,14 +96,14 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `longest-unique` | Chuỗi con dài nhất không lặp | Longest substring without repeats | `"abcabcbb"`: mở rộng bên phải, gặp ký tự trùng thì co bên trái | LeetCode 3 · CSES 1141 Playlist | ⬜ |
 | 3 | `min-window-sum` | Đoạn ngắn nhất có tổng ≥ S | Shortest window with sum ≥ S | Khung co giãn, ghi lại độ dài nhỏ nhất mỗi lần tổng đủ | LeetCode 209 · CSES 1660 Subarray Sums I | ⬜ |
 
-### 07. Binary Search · key `binary-search` · Đợt 1
+### 07. Binary Search · Binary Search · key `binary-search` · Đợt 1
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `lower-bound` | lower_bound từng bước | lower_bound step by step | Khung `[lo, hi)` co một nửa mỗi bước, tới vị trí đầu tiên ≥ x | LeetCode 704 · LeetCode 35 | ⬜ |
 | 2 | `answer-search` | Chặt nhị phân đáp án | Binary search on the answer | Trục thời gian t; hàm "làm kịp không?" sai…sai đúng…đúng, tìm điểm đổi | CSES 1620 Factory Machines · LeetCode 875 · CSES 1085 Array Division | ⬜ |
 
-### 08. Stack, Queue & Deque · key `stack-queue` · Đợt 2
+### 08. Stack, Queue & Deque · Stack, Queue & Deque · key `stack-queue` · Đợt 2
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -110,7 +111,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `monotonic-stack` | Stack đơn điệu | Monotonic stack | Phần tử nhỏ hơn gần nhất bên trái: số mới đẩy bật các số lớn hơn ra | CSES 1645 Nearest Smaller Values · LeetCode 739 · LeetCode 84 | ⬜ |
 | 3 | `monotonic-deque` | Max trong cửa sổ trượt | Sliding window maximum | Deque giữ chỉ số giảm dần; đầu deque là max của khung | LeetCode 239 · CSES 1644 Maximum Subarray Sum II | ⬜ |
 
-### 09. Hashing & STL · key `hashing` · Đợt 2
+### 09. Hashing & STL · Hashing & STL · key `hashing` · Đợt 2
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -121,7 +122,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 # Cấp 2 — Trung cấp
 
-### 10. Đồ thị: BFS / DFS · key `graphs` · Đợt 3
+### 10. Đồ thị: BFS / DFS · Graphs: BFS / DFS · key `graphs` · Đợt 3
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -132,7 +133,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 5 | `cycle-detect` | Tìm chu trình | Finding a cycle | DFS ba màu trắng/xám/đen; gặp đỉnh xám là có chu trình | CSES 1669 Round Trip · CSES 1678 Round Trip II | ⬜ |
 | 6 | `topo-sort` | Sắp xếp tô-pô | Topological sort | Đồ thị môn học: lấy dần các đỉnh có bậc vào = 0 (Kahn) | CSES 1679 Course Schedule · LeetCode 207 | ⬜ |
 
-### 11. Đường đi ngắn nhất · key `shortest-path` · Đợt 3
+### 11. Đường đi ngắn nhất · Shortest Paths · key `shortest-path` · Đợt 3
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -143,7 +144,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 5 | `floyd` | Floyd–Warshall | Floyd–Warshall | Ma trận khoảng cách, lần lượt cho đi qua từng đỉnh trung gian k | CSES 1672 Shortest Routes II | ⬜ |
 | 6 | `state-graph` | Đồ thị trạng thái | Graphs of states | Đỉnh = (thành phố, đã dùng phiếu giảm giá chưa) | CSES 1195 Flight Discount | ⬜ |
 
-### 12. DSU & cây khung nhỏ nhất · key `dsu-mst` · Đợt 3
+### 12. DSU & cây khung nhỏ nhất · DSU & Minimum Spanning Trees · key `dsu-mst` · Đợt 3
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -151,7 +152,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `kruskal` | Kruskal | Kruskal's MST | Sắp cạnh theo trọng số, lấy cạnh nếu không tạo chu trình | CSES 1675 Road Reparation · LeetCode 1584 | ⬜ |
 | 3 | `prim` | Prim | Prim's MST | Cây lớn dần từ một đỉnh, luôn lấy cạnh rẻ nhất đi ra ngoài | CSES 1675 (làm lại bằng Prim) | ⬜ |
 
-### 13. Cây · key `trees` · Đợt 3
+### 13. Cây · Trees · key `trees` · Đợt 3
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -161,7 +162,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 4 | `lca` | Tổ tiên chung gần nhất | Lowest common ancestor | Đưa hai đỉnh về cùng độ sâu rồi nhảy cùng nhau | CSES 1688 Company Queries II · CSES 1135 Distance Queries | ⬜ |
 | 5 | `euler-tour` | Euler tour: cây thành mảng | Euler tour: a tree as an array | Thời điểm vào/ra của DFS; cây con thành một đoạn liên tục | CSES 1137 Subtree Queries · CSES 1138 Path Queries | ⬜ |
 
-### 14. Quy hoạch động · key `dp` · Đợt 4
+### 14. Quy hoạch động · Dynamic Programming · key `dp` · Đợt 4
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -173,7 +174,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 6 | `edit-distance` | LCS & khoảng cách chỉnh sửa | LCS and edit distance | Bảng 2 chiều giữa hai chuỗi: thêm, xoá, thay | LeetCode 1143 · LeetCode 72 · CSES 1639 Edit Distance | ⬜ |
 | 7 | `dag-dp` | DP trên DAG | DP on a DAG | Thứ tự tô-pô; đường dài nhất / số đường đi | CSES 1680 Longest Flight Route · CSES 1681 Game Routes | ⬜ |
 
-### 15. Truy vấn trên đoạn · key `range-queries` · Đợt 4
+### 15. Truy vấn trên đoạn · Range Queries · key `range-queries` · Đợt 4
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -182,7 +183,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 3 | `segment-tree` | Segment tree | Segment tree | Cây nhị phân trên mảng 8 ô; truy vấn chỉ đi qua O(log n) nút | CSES 1649 Dynamic Range Minimum Queries · CSES 1650 Range Xor Queries | ⬜ |
 | 4 | `fenwick-2d` | Fenwick 2 chiều | 2D Fenwick tree | Lưới Fenwick: cập nhật một ô, hỏi tổng hình chữ nhật | CSES 1739 Forest Queries II | ⬜ |
 
-### 16. Toán · key `math` · Đợt 4
+### 16. Toán · Math · key `math` · Đợt 4
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -192,7 +193,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 4 | `mod-inverse` | Nghịch đảo modulo | Modular inverse | Fermat: `a^(p−2) mod p`; chia trong modulo | CSES 1712 Exponentiation II | ⬜ |
 | 5 | `binomial` | Tổ hợp C(n, k) mod p | Binomials mod p | Giai thừa và nghịch đảo tính sẵn | CSES 1079 Binomial Coefficients · CSES 1715 Creating Strings II | ⬜ |
 
-### 17. Chuỗi · key `strings` · Đợt 4
+### 17. Chuỗi · Strings · key `strings` · Đợt 4
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -201,7 +202,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 3 | `z-function` | Z-function | Z-function | Hộp `[l, r]` tái dùng kết quả đã tính | CSES 1733 Finding Periods | ⬜ |
 | 4 | `trie` | Trie | Trie | Cây chữ cái cho một tập từ; đi theo từng ký tự | CSES 1731 Word Combinations · LeetCode 208 | ⬜ |
 
-### 18. Bitmask · key `bitmask` · Đợt 4
+### 18. Bitmask · Bitmasks · key `bitmask` · Đợt 4
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -211,7 +212,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 # Cấp 3 — Nâng cao
 
-### 19. Segment tree nâng cao · key `segtree-adv` · Đợt 5
+### 19. Segment tree nâng cao · Advanced Segment Trees · key `segtree-adv` · Đợt 5
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -221,7 +222,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 4 | `coordinate-compress` | Nén toạ độ | Coordinate compression | Giá trị đến 10⁹ ánh xạ về chỉ số 0..n−1 để dựng cây | CSES 1144 Salary Queries | ⬜ |
 | 5 | `persistent-segtree` | Segment tree bền vững | Persistent segment tree | Mỗi lần cập nhật chỉ tạo mới O(log n) nút, các phiên bản dùng chung phần còn lại | CSES 1737 Range Queries and Copies · SPOJ MKTHNUM | ⬜ |
 
-### 20. Chia căn & xử lý offline · key `offline` · Đợt 5
+### 20. Chia căn & xử lý offline · Square Root & Offline Tricks · key `offline` · Đợt 5
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -229,7 +230,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `offline-queries` | Sắp truy vấn để trả lời offline | Answering queries offline | Sắp truy vấn theo đầu phải, quét mảng một lần với Fenwick | CSES 1734 Distinct Values Queries | ⬜ |
 | 3 | `mo-algorithm` | Thuật toán Mo | Mo's algorithm | Truy vấn sắp theo (khối của l, r); hai con trỏ trượt qua lại | SPOJ DQUERY · CSES 1734 | ⬜ |
 
-### 21. Đồ thị nâng cao · key `graphs-adv` · Đợt 6
+### 21. Đồ thị nâng cao · Advanced Graphs · key `graphs-adv` · Đợt 6
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -240,7 +241,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 5 | `euler-path` | Đường đi Euler | Eulerian paths | Thuật toán Hierholzer: đi hết cạnh, gặp ngõ cụt thì ghi vào đáp án | CSES 1691 Mail Delivery · CSES 1693 Teleporters Path | ⬜ |
 | 6 | `functional-graph` | Đồ thị hàm | Functional graphs | Mỗi đỉnh đúng một cạnh ra: đuôi dẫn vào chu trình; nhảy nhị phân k bước | CSES 1750 Planets Queries I · CSES 1751 Planets Cycles | ⬜ |
 
-### 22. Luồng & ghép cặp · key `flows` · Đợt 6
+### 22. Luồng & ghép cặp · Flows & Matching · key `flows` · Đợt 6
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -248,7 +249,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `min-cut` | Lát cắt nhỏ nhất | Minimum cut | Sau khi hết luồng: các đỉnh còn tới được từ nguồn tạo thành một phía của lát cắt | CSES 1695 Police Chase | ⬜ |
 | 3 | `bipartite-matching` | Ghép cặp hai phía | Bipartite matching | Đường tăng luồng xen kẽ; hoặc dựng luồng với nguồn và đích | CSES 1696 School Dance · CSES 1711 Distinct Routes | ⬜ |
 
-### 23. Cây nâng cao · key `trees-adv` · Đợt 6
+### 23. Cây nâng cao · Advanced Trees · key `trees-adv` · Đợt 6
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -258,7 +259,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 4 | `hld` | Heavy-light decomposition | Heavy-light decomposition | Cây tách thành các chuỗi nặng; đường đi qua O(log n) chuỗi | CSES 2134 Path Queries II | ⬜ |
 | 5 | `centroid` | Phân rã trọng tâm | Centroid decomposition | Tìm trọng tâm, cắt ra, đệ quy; mỗi đường đi qua trọng tâm của một tầng | CSES 2079 Finding a Centroid · CSES 2080 Fixed-Length Paths I | ⬜ |
 
-### 24. Quy hoạch động nâng cao · key `dp-adv` · Đợt 7
+### 24. Quy hoạch động nâng cao · Advanced DP · key `dp-adv` · Đợt 7
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -271,7 +272,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 7 | `convex-hull-trick` | Convex hull trick | Convex hull trick | Mỗi trạng thái là một đường thẳng; giữ bao lồi dưới để hỏi min | CSES 2084 Monster Game I | ⬜ |
 | 8 | `dc-optimization` | Tối ưu chia để trị | Divide & conquer optimization | Điểm chia tối ưu đơn điệu → giải tầng DP bằng chia để trị | CSES 2086 Subarray Squares | ⬜ |
 
-### 25. Toán nâng cao · key `math-adv` · Đợt 7
+### 25. Toán nâng cao · Advanced Math · key `math-adv` · Đợt 7
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -282,7 +283,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 5 | `crt` | Định lý số dư Trung Hoa | Chinese remainder theorem | Gộp hai phương trình đồng dư bằng Euclid mở rộng | Kattis generalchineseremainder | ⬜ |
 | 6 | `fft` | FFT: nhân đa thức | FFT polynomial multiplication | Hệ số ↔ giá trị tại căn đơn vị; nhân từng điểm rồi biến đổi ngược | SPOJ POLYMUL | ⬜ |
 
-### 26. Chuỗi nâng cao · key `strings-adv` · Đợt 7
+### 26. Chuỗi nâng cao · Advanced Strings · key `strings-adv` · Đợt 7
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -291,7 +292,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 3 | `suffix-array` | Mảng hậu tố | Suffix array | Sắp các hậu tố bằng cách nhân đôi độ dài; mảng LCP | CSES 2105 Distinct Substrings · CSES 2106 Repeating Substring | ⬜ |
 | 4 | `min-rotation` | Xoay vòng nhỏ nhất | Minimal rotation | So hai ứng viên, loại cả khối khi một bên thua | CSES 1110 Minimal Rotation | ⬜ |
 
-### 27. Hình học · key `geometry` · Đợt 7
+### 27. Hình học · Geometry · key `geometry` · Đợt 7
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -301,7 +302,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 4 | `convex-hull` | Bao lồi | Convex hull | Monotone chain: quét điểm đã sắp, bỏ điểm làm rẽ sai chiều | CSES 2195 Convex Hull | ⬜ |
 | 5 | `closest-pair` | Cặp điểm gần nhất | Closest pair of points | Quét theo x, giữ dải rộng d quanh đường quét | CSES 2194 Minimum Euclidean Distance | ⬜ |
 
-### 28. Cấu trúc dữ liệu nâng cao · key `ds-adv` · Đợt 5
+### 28. Cấu trúc dữ liệu nâng cao · Advanced Data Structures · key `ds-adv` · Đợt 5
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
@@ -314,7 +315,6 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 ## Ghi chú
 
-- Cây thư mục trên site đánh số chương theo đúng thứ tự ở đây (01–28).
-  Hiện `catalog.ts` mới có 7 chương. Chương nào bắt đầu làm thì thêm vào.
+- Cây thư mục CP trên site được dựng từ chính file này (`src/lib/roadmap.ts`), đánh số chương 01–28 như ở đây.
 - Muốn đổi thứ tự, thêm hoặc bỏ bài thì sửa file này trước, rồi mới sửa code.
 - Ngoài lộ trình này, sau này có thể thêm chương **Kỹ năng thi đấu**: debug, stress test, đọc đề, quản lý thời gian.
