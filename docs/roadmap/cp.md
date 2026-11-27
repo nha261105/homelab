@@ -138,7 +138,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `bfs-shortest` | Đường ngắn nhất không trọng số | Unweighted shortest paths | BFS kèm mảng `parent`, lần ngược ra đường đi | CSES 1667 Message Route | ✅ |
-| 2 | `dijkstra` | Dijkstra | Dijkstra | Hàng đợi ưu tiên; mỗi bước chốt đỉnh gần nhất rồi nới lỏng cạnh | CSES 1671 Shortest Routes I · LeetCode 743 | ⬜ |
+| 2 | `dijkstra` | Dijkstra | Dijkstra | Hàng đợi ưu tiên; mỗi bước chốt đỉnh gần nhất rồi nới lỏng cạnh | CSES 1671 Shortest Routes I · LeetCode 743 | ✅ |
 | 3 | `zero-one-bfs` | BFS 0-1 | 0-1 BFS | Cạnh nặng 0 đẩy vào đầu deque, cạnh nặng 1 đẩy vào cuối | CF 1063B Labyrinth | ⬜ |
 | 4 | `bellman-ford` | Bellman-Ford & chu trình âm | Bellman-Ford and negative cycles | n−1 lượt nới lỏng; lượt thứ n còn giảm được là có chu trình âm | CSES 1673 High Score · CSES 1197 Cycle Finding | ⬜ |
 | 5 | `floyd` | Floyd–Warshall | Floyd–Warshall | Ma trận khoảng cách, lần lượt cho đi qua từng đỉnh trung gian k | CSES 1672 Shortest Routes II | ⬜ |
