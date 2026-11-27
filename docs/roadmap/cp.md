@@ -108,7 +108,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `brackets` | Kiểm tra ngoặc bằng stack | Matching brackets with a stack | `"([]{})"`: mở thì đẩy vào chồng, đóng thì so với đỉnh | LeetCode 20 | ✅ |
-| 2 | `monotonic-stack` | Stack đơn điệu | Monotonic stack | Phần tử nhỏ hơn gần nhất bên trái: số mới đẩy bật các số lớn hơn ra | CSES 1645 Nearest Smaller Values · LeetCode 739 · LeetCode 84 | ⬜ |
+| 2 | `monotonic-stack` | Stack đơn điệu | Monotonic stack | Phần tử nhỏ hơn gần nhất bên trái: số mới đẩy bật các số lớn hơn ra | CSES 1645 Nearest Smaller Values · LeetCode 739 · LeetCode 84 | ✅ |
 | 3 | `monotonic-deque` | Max trong cửa sổ trượt | Sliding window maximum | Deque giữ chỉ số giảm dần; đầu deque là max của khung | LeetCode 239 · CSES 1644 Maximum Subarray Sum II | ⬜ |
 
 ### 09. Hashing & STL · Hashing & STL · key `hashing` · Đợt 2
