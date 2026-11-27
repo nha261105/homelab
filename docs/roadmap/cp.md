@@ -257,7 +257,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `rerooting` | Đổi gốc | Rerooting | Tính cho một gốc, rồi dời gốc sang con và sửa đáp án trong O(1) | CSES 1133 Tree Distances II | ✅ |
 | 3 | `small-to-large` | Gộp nhỏ vào lớn | Small-to-large merging | Mỗi đỉnh giữ một set; luôn đổ set nhỏ vào set lớn | CSES 1139 Distinct Colors | ✅ |
 | 4 | `hld` | Heavy-light decomposition | Heavy-light decomposition | Cây tách thành các chuỗi nặng; đường đi qua O(log n) chuỗi | CSES 2134 Path Queries II | ✅ |
-| 5 | `centroid` | Phân rã trọng tâm | Centroid decomposition | Tìm trọng tâm, cắt ra, đệ quy; mỗi đường đi qua trọng tâm của một tầng | CSES 2079 Finding a Centroid · CSES 2080 Fixed-Length Paths I | ⬜ |
+| 5 | `centroid` | Phân rã trọng tâm | Centroid decomposition | Tìm trọng tâm, cắt ra, đệ quy; mỗi đường đi qua trọng tâm của một tầng | CSES 2079 Finding a Centroid · CSES 2080 Fixed-Length Paths I | ✅ |
 
 ### 24. Quy hoạch động nâng cao · Advanced DP · key `dp-adv` · Đợt 7
 
