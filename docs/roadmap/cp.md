@@ -296,7 +296,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `cross-product` | Tích có hướng & hướng rẽ | Cross product and orientation | Ba điểm: rẽ trái, rẽ phải hay thẳng hàng theo dấu tích có hướng | CSES 2189 Point Location Test | ⬜ |
+| 1 | `cross-product` | Tích có hướng & hướng rẽ | Cross product and orientation | Ba điểm: rẽ trái, rẽ phải hay thẳng hàng theo dấu tích có hướng | CSES 2189 Point Location Test | ✅ |
 | 2 | `segment-intersection` | Hai đoạn thẳng có cắt nhau? | Do two segments intersect? | Hai phép kiểm tra hướng, cộng trường hợp thẳng hàng | CSES 2190 Line Segment Intersection | ⬜ |
 | 3 | `polygon-area` | Diện tích đa giác & điểm trong đa giác | Polygon area and point in polygon | Công thức shoelace; tia bắn ra đếm số lần cắt cạnh | CSES 2191 Polygon Area · CSES 2192 Point in Polygon · CSES 2193 | ⬜ |
 | 4 | `convex-hull` | Bao lồi | Convex hull | Monotone chain: quét điểm đã sắp, bỏ điểm làm rẽ sai chiều | CSES 2195 Convex Hull | ⬜ |
