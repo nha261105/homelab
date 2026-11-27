@@ -166,7 +166,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `stairs` | Leo cầu thang | Climbing stairs | Từ cây đệ quy (chương 02) sang bảng `dp` một chiều | LeetCode 70 · CSES 1633 Dice Combinations | ⬜ |
+| 1 | `stairs` | Leo cầu thang | Climbing stairs | Từ cây đệ quy (chương 02) sang bảng `dp` một chiều | LeetCode 70 · CSES 1633 Dice Combinations | ✅ |
 | 2 | `coin-change` | Đổi tiền | Coin change | Bảng `dp[x]`: ít đồng nhất, rồi đếm số cách | CSES 1634 Minimizing Coins · CSES 1635 · CSES 1636 | ⬜ |
 | 3 | `grid-paths` | Đếm đường đi trên lưới | Counting grid paths | Mỗi ô = trên + trái, ô có vật cản bằng 0 | LeetCode 62 · CSES 1638 Grid Paths | ⬜ |
 | 4 | `knapsack` | Cái túi 0/1 | 0/1 knapsack | Bảng vật × sức chứa; chọn hoặc bỏ từng vật | CSES 1158 Book Shop · LeetCode 416 · CSES 1745 Money Sums | ⬜ |
