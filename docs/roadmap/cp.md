@@ -238,7 +238,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `condensation` | Đồ thị nén + DP | Condensation graph + DP | Mỗi SCC thành một đỉnh của DAG, rồi DP trên DAG | CSES 1686 Coin Collector | ✅ |
 | 3 | `two-sat` | 2-SAT | 2-SAT | Mỗi mệnh đề a ∨ b thành hai cạnh suy ra; x và ¬x cùng SCC là vô nghiệm | CSES 1684 Giant Pizza | ✅ |
 | 4 | `bridges` | Cầu & khớp | Bridges and articulation points | `tin` / `low` trong DFS; cạnh có `low[con] > tin[cha]` là cầu | CSES 2076 Necessary Roads · CSES 2077 Necessary Cities | ✅ |
-| 5 | `euler-path` | Đường đi Euler | Eulerian paths | Thuật toán Hierholzer: đi hết cạnh, gặp ngõ cụt thì ghi vào đáp án | CSES 1691 Mail Delivery · CSES 1693 Teleporters Path | ⬜ |
+| 5 | `euler-path` | Đường đi Euler | Eulerian paths | Thuật toán Hierholzer: đi hết cạnh, gặp ngõ cụt thì ghi vào đáp án | CSES 1691 Mail Delivery · CSES 1693 Teleporters Path | ✅ |
 | 6 | `functional-graph` | Đồ thị hàm | Functional graphs | Mỗi đỉnh đúng một cạnh ra: đuôi dẫn vào chu trình; nhảy nhị phân k bước | CSES 1750 Planets Queries I · CSES 1751 Planets Cycles | ⬜ |
 
 ### 22. Luồng & ghép cặp · Flows & Matching · key `flows` · Đợt 6
