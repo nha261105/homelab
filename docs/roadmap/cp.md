@@ -156,7 +156,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `subtree-size` | DFS trên cây: kích thước cây con | Tree DFS: subtree sizes | Giá trị dồn từ lá lên gốc | CSES 1674 Subordinates | ⬜ |
+| 1 | `subtree-size` | DFS trên cây: kích thước cây con | Tree DFS: subtree sizes | Giá trị dồn từ lá lên gốc | CSES 1674 Subordinates | ✅ |
 | 2 | `diameter` | Đường kính cây | Tree diameter | Hai lần DFS: từ đỉnh bất kỳ ra đỉnh xa nhất, rồi đi tiếp từ đó | CSES 1131 Tree Diameter · LeetCode 543 | ⬜ |
 | 3 | `binary-lifting` | Nhảy nhị phân | Binary lifting | Bảng `up[k][v]` = tổ tiên thứ 2^k; nhảy theo các bit của k | CSES 1687 Company Queries I | ⬜ |
 | 4 | `lca` | Tổ tiên chung gần nhất | Lowest common ancestor | Đưa hai đỉnh về cùng độ sâu rồi nhảy cùng nhau | CSES 1688 Company Queries II · CSES 1135 Distance Queries | ⬜ |
