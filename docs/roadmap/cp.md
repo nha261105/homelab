@@ -127,7 +127,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `graph-basics` | Biểu diễn đồ thị | Representing a graph | Cùng đồ thị 5 đỉnh vẽ ra danh sách kề và ma trận kề | CSES 1666 Building Roads | ✅ |
-| 2 | `bfs-grid` | BFS trên lưới | BFS on a grid | Lưới có tường, sóng BFS lan theo từng lớp khoảng cách | CSES 1193 Labyrinth · LeetCode 994 | ⬜ |
+| 2 | `bfs-grid` | BFS trên lưới | BFS on a grid | Lưới có tường, sóng BFS lan theo từng lớp khoảng cách | CSES 1193 Labyrinth · LeetCode 994 | ✅ |
 | 3 | `dfs-components` | Đếm thành phần liên thông | Counting components | DFS tô màu từng vùng | CSES 1192 Counting Rooms · LeetCode 200 | ⬜ |
 | 4 | `bipartite` | Đồ thị hai phía | Bipartite check | Tô xen kẽ hai màu; cạnh nối hai đỉnh cùng màu thì thất bại | CSES 1668 Building Teams · LeetCode 785 | ⬜ |
 | 5 | `cycle-detect` | Tìm chu trình | Finding a cycle | DFS ba màu trắng/xám/đen; gặp đỉnh xám là có chu trình | CSES 1669 Round Trip · CSES 1678 Round Trip II | ⬜ |
