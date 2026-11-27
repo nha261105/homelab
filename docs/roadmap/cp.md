@@ -59,7 +59,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `call-tree` | Cây lời gọi đệ quy | The recursion tree | Cây gọi `fib(5)`, các nhánh trùng nhau sáng lên → lý do cần nhớ kết quả | LeetCode 509 · CSES 1622 Creating Strings | ⬜ |
+| 1 | `call-tree` | Cây lời gọi đệ quy | The recursion tree | Cây gọi `fib(5)`, các nhánh trùng nhau sáng lên → lý do cần nhớ kết quả | LeetCode 509 · CSES 1622 Creating Strings | ✅ |
 | 2 | `subsets` | Sinh tập con | Generating subsets | Cây chọn / không chọn cho `{1,2,3}`, mỗi lá là một tập con | LeetCode 78 · CSES 1623 Apple Division | ⬜ |
 | 3 | `n-queens` | Quay lui: đặt hậu | Backtracking: N-Queens | Bàn 4×4, đặt hậu từng hàng, xung đột thì lùi lại | LeetCode 51 · CSES 1624 Chessboard and Queens | ⬜ |
 
