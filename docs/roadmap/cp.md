@@ -277,7 +277,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `inclusion-exclusion` | Bao hàm – loại trừ | Inclusion–exclusion | Biểu đồ Venn 3 tập: cộng đơn, trừ đôi, cộng ba | CSES 2185 Prime Multiples · CSES 2417 Counting Coprime Pairs | ✅ |
-| 2 | `catalan` | Số Catalan | Catalan numbers | Dãy ngoặc đúng ↔ đường đi không vượt đường chéo | CSES 2064 Bracket Sequences I | ⬜ |
+| 2 | `catalan` | Số Catalan | Catalan numbers | Dãy ngoặc đúng ↔ đường đi không vượt đường chéo | CSES 2064 Bracket Sequences I | ✅ |
 | 3 | `matrix-power` | Luỹ thừa ma trận | Matrix exponentiation | Fibonacci thành nhân ma trận 2×2, luỹ thừa nhanh như số | CSES 1722 Fibonacci Numbers · CSES 1096 Throwing Dice | ⬜ |
 | 4 | `game-theory` | Lý thuyết trò chơi: Nim & Grundy | Game theory: Nim and Grundy | Trạng thái thắng/thua; XOR các đống; số Grundy là mex | CSES 1730 Nim Game I · CSES 1729 Stick Game | ⬜ |
 | 5 | `crt` | Định lý số dư Trung Hoa | Chinese remainder theorem | Gộp hai phương trình đồng dư bằng Euclid mở rộng | Kattis generalchineseremainder | ⬜ |
