@@ -87,7 +87,7 @@ const kindLabel = (k: string) => t[`k${k}` as keyof typeof t];
       <div class="sc-body" id="stepBody" set:html={first.body[lang]} />
       <div class="note" id="note" hidden={!first.note}>
         <span class="note-ic"><Icon name="bulb" /></span>
-        <div><span class="eyebrow">{t.keyIdea}</span><p id="noteText">{first.note?.[lang]}</p></div>
+        <div><span class="eyebrow">{t.keyIdea}</span><p id="noteText" set:html={first.note?.[lang] ?? ""}></p></div>
       </div>
       <div class="sc-nav">
         <button class="btn3d" id="prev" disabled><Icon name="arrow-left" size={15} />{t.back}</button>

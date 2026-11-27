@@ -60,7 +60,7 @@ export async function initLesson(signal: AbortSignal) {
     $("#stepBody").innerHTML = s.body[lang];
     const note = $("#note");
     note.hidden = !s.note;
-    if (s.note) $("#noteText").textContent = s.note[lang];
+    if (s.note) $("#noteText").innerHTML = s.note[lang];
     $("#nextText").textContent = next ? `${t.nextLabel}: ${next.title[lang]}` : t.nextLabel;
     if (animate) ["#stepTitle", "#stepBody", "#note"].forEach((sel, k) =>
       $(sel).animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 300, delay: k * 60, easing: "ease-out", fill: "backwards" }));
