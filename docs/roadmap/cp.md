@@ -179,7 +179,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `sparse-table` | Sparse table | Sparse table | Các tầng đoạn dài 1, 2, 4, 8; min đoạn = hai khối chồng lên nhau | CSES 1647 Static Range Minimum Queries | ✅ |
-| 2 | `fenwick` | Cây Fenwick (BIT) | Fenwick tree | Mỗi ô phụ trách một đoạn theo bit thấp nhất; cập nhật và hỏi theo `i & −i` | CSES 1648 Dynamic Range Sum Queries · LeetCode 307 | ⬜ |
+| 2 | `fenwick` | Cây Fenwick (BIT) | Fenwick tree | Mỗi ô phụ trách một đoạn theo bit thấp nhất; cập nhật và hỏi theo `i & −i` | CSES 1648 Dynamic Range Sum Queries · LeetCode 307 | ✅ |
 | 3 | `segment-tree` | Segment tree | Segment tree | Cây nhị phân trên mảng 8 ô; truy vấn chỉ đi qua O(log n) nút | CSES 1649 Dynamic Range Minimum Queries · CSES 1650 Range Xor Queries | ⬜ |
 | 4 | `fenwick-2d` | Fenwick 2 chiều | 2D Fenwick tree | Lưới Fenwick: cập nhật một ô, hỏi tổng hình chữ nhật | CSES 1739 Forest Queries II | ⬜ |
 
