@@ -264,7 +264,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `interval-dp` | DP khoảng | Interval DP | `dp[l][r]` điền theo độ dài đoạn tăng dần | CSES 1097 Removal Game · CSES 1744 Rectangle Cutting | ✅ |
-| 2 | `digit-dp` | DP chữ số | Digit DP | Đi từng chữ số với cờ "còn bám sát cận trên" | CSES 2220 Counting Numbers | ⬜ |
+| 2 | `digit-dp` | DP chữ số | Digit DP | Đi từng chữ số với cờ "còn bám sát cận trên" | CSES 2220 Counting Numbers | ✅ |
 | 3 | `bitmask-dp` | DP trên bitmask | Bitmask DP | `dp[mask]` = cách tốt nhất cho tập người đã lên thang máy | CSES 1653 Elevator Rides | ⬜ |
 | 4 | `profile-dp` | DP theo profile (lát gạch) | Broken-profile DP | Lấp lưới từng cột; mask là hình dạng mép cột hiện tại | CSES 2181 Counting Tilings | ⬜ |
 | 5 | `sos-dp` | Tổng trên tập con (SOS) | Sum over subsets | Với mỗi bit, cộng giá trị từ mask không có bit đó | CSES 1654 Bit Problem | ⬜ |
