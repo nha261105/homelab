@@ -268,7 +268,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 3 | `bitmask-dp` | DP trên bitmask | Bitmask DP | `dp[mask]` = cách tốt nhất cho tập người đã lên thang máy | CSES 1653 Elevator Rides | ✅ |
 | 4 | `profile-dp` | DP theo profile (lát gạch) | Broken-profile DP | Lấp lưới từng cột; mask là hình dạng mép cột hiện tại | CSES 2181 Counting Tilings | ✅ |
 | 5 | `sos-dp` | Tổng trên tập con (SOS) | Sum over subsets | Với mỗi bit, cộng giá trị từ mask không có bit đó | CSES 1654 Bit Problem | ✅ |
-| 6 | `expected-value` | Xác suất & kỳ vọng | Probability and expectation | Phân phối tổng sau từng lần tung xúc xắc | CSES 1725 Dice Probability · CSES 1727 Candy Lottery | ⬜ |
+| 6 | `expected-value` | Xác suất & kỳ vọng | Probability and expectation | Phân phối tổng sau từng lần tung xúc xắc | CSES 1725 Dice Probability · CSES 1727 Candy Lottery | ✅ |
 | 7 | `convex-hull-trick` | Convex hull trick | Convex hull trick | Mỗi trạng thái là một đường thẳng; giữ bao lồi dưới để hỏi min | CSES 2084 Monster Game I | ⬜ |
 | 8 | `dc-optimization` | Tối ưu chia để trị | Divide & conquer optimization | Điểm chia tối ưu đơn điệu → giải tầng DP bằng chia để trị | CSES 2086 Subarray Squares | ⬜ |
 
