@@ -148,7 +148,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `union-find` | Disjoint Set Union | Union-Find | Các rừng nhỏ hợp lại; nén đường đi làm cây phẳng ra | CSES 1676 Road Construction · LeetCode 547 | ⬜ |
+| 1 | `union-find` | Disjoint Set Union | Union-Find | Các rừng nhỏ hợp lại; nén đường đi làm cây phẳng ra | CSES 1676 Road Construction · LeetCode 547 | ✅ |
 | 2 | `kruskal` | Kruskal | Kruskal's MST | Sắp cạnh theo trọng số, lấy cạnh nếu không tạo chu trình | CSES 1675 Road Reparation · LeetCode 1584 | ⬜ |
 | 3 | `prim` | Prim | Prim's MST | Cây lớn dần từ một đỉnh, luôn lấy cạnh rẻ nhất đi ra ngoài | CSES 1675 (làm lại bằng Prim) | ⬜ |
 
