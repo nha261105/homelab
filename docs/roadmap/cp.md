@@ -70,7 +70,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 1 | `merge-sort` | Merge sort | Merge sort | Mảng 8 phần tử chia đôi xuống tận 1, rồi trộn lên từng tầng | LeetCode 912 · CSES 1621 Distinct Numbers | ✅ |
 | 2 | `custom-order` | Sắp theo tiêu chí riêng | Sorting by your own rule | Các đoạn phim sắp theo giờ kết thúc → tham lam chọn được nhiều phim nhất | CSES 1629 Movie Festival · LeetCode 179 | ✅ |
 | 3 | `sweep-events` | Quét sự kiện | Sweeping events | Khách vào/ra thành các điểm +1/−1 trên trục thời gian | CSES 1619 Restaurant Customers · CSES 1074 Stick Lengths | ✅ |
-| 4 | `exchange-argument` | Chứng minh tham lam bằng hoán đổi | Exchange arguments | Hai việc kề nhau: đổi chỗ không làm tệ hơn → thứ tự tối ưu | CSES 1630 Tasks and Deadlines · CSES 1073 Towers | ⬜ |
+| 4 | `exchange-argument` | Chứng minh tham lam bằng hoán đổi | Exchange arguments | Hai việc kề nhau: đổi chỗ không làm tệ hơn → thứ tự tối ưu | CSES 1630 Tasks and Deadlines · CSES 1073 Towers | ✅ |
 
 ### 04. Prefix Sum · Prefix Sums · key `prefix-sum` · Đợt 1
 
