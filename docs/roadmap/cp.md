@@ -199,7 +199,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 |---|---|---|---|---|---|---|
 | 1 | `string-hash` | Hash chuỗi | Polynomial string hashing | Hash tiền tố; so hai đoạn bằng một phép trừ | CSES 1753 String Matching | ✅ |
 | 2 | `kmp` | KMP | KMP string matching | Bảng prefix-function; khi lệch thì nhảy, không lùi con trỏ văn bản | CSES 1753 · CSES 1732 Finding Borders · LeetCode 28 | ✅ |
-| 3 | `z-function` | Z-function | Z-function | Hộp `[l, r]` tái dùng kết quả đã tính | CSES 1733 Finding Periods | ⬜ |
+| 3 | `z-function` | Z-function | Z-function | Hộp `[l, r]` tái dùng kết quả đã tính | CSES 1733 Finding Periods | ✅ |
 | 4 | `trie` | Trie | Trie | Cây chữ cái cho một tập từ; đi theo từng ký tự | CSES 1731 Word Combinations · LeetCode 208 | ⬜ |
 
 ### 18. Bitmask · Bitmasks · key `bitmask` · Đợt 4
