@@ -280,7 +280,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 2 | `catalan` | Số Catalan | Catalan numbers | Dãy ngoặc đúng ↔ đường đi không vượt đường chéo | CSES 2064 Bracket Sequences I | ✅ |
 | 3 | `matrix-power` | Luỹ thừa ma trận | Matrix exponentiation | Fibonacci thành nhân ma trận 2×2, luỹ thừa nhanh như số | CSES 1722 Fibonacci Numbers · CSES 1096 Throwing Dice | ✅ |
 | 4 | `game-theory` | Lý thuyết trò chơi: Nim & Grundy | Game theory: Nim and Grundy | Trạng thái thắng/thua; XOR các đống; số Grundy là mex | CSES 1730 Nim Game I · CSES 1729 Stick Game | ✅ |
-| 5 | `crt` | Định lý số dư Trung Hoa | Chinese remainder theorem | Gộp hai phương trình đồng dư bằng Euclid mở rộng | Kattis generalchineseremainder | ⬜ |
+| 5 | `crt` | Định lý số dư Trung Hoa | Chinese remainder theorem | Gộp hai phương trình đồng dư bằng Euclid mở rộng | Kattis generalchineseremainder | ✅ |
 | 6 | `fft` | FFT: nhân đa thức | FFT polynomial multiplication | Hệ số ↔ giá trị tại căn đơn vị; nhân từng điểm rồi biến đổi ngược | SPOJ POLYMUL | ⬜ |
 
 ### 26. Chuỗi nâng cao · Advanced Strings · key `strings-adv` · Đợt 7
