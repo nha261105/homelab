@@ -171,7 +171,7 @@ export function setup(scene: any, shapes: any) {
   scene.add("deque", { shape: shapes.pill({ text: "deque", h: 23, pad: 5 }), x: -0.4, y: 9.5 });
   EDGES.forEach(([from, to, weight, bend]) => {
     const id = from + to;
-    scene.link(id, { from, to, bend });
+    scene.link(id, { from, to, anchor: "center", bend });
     scene.add(`w${id}`, { shape: shapes.pill({ text: weight, h: 19, pad: 5 }), follow: id });
   });
 }

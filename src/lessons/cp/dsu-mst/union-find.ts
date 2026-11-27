@@ -160,7 +160,7 @@ export function setup(scene: any, shapes: any) {
     const [x, y] = POSITIONS[v];
     scene.add(`v${v}`, { shape: shapes.block({ label: v, w: 38, h: 31 }), x, y });
     scene.add(`p${v}`, { shape: shapes.block({ label: v, sub: v, w: 38, h: 31 }), x: v * 1.09 + 0.15, y: 8.35 });
-    scene.link(`edge${v}`, { from: `v${v}`, to: `v${v}`, bend: -0.65 });
+    scene.link(`edge${v}`, { from: `v${v}`, to: `v${v}`, anchor: "center", arrow: true, bend: -0.25 });
   }
   scene.add("parent", { shape: shapes.pill({ text: "parent[v]" }), x: 2.88, y: 6.78 });
 }

@@ -140,7 +140,7 @@ export function setup(scene: any, shapes: any) {
     scene.add(`v${i + 1}`, { shape: shapes.block({ label: i + 1, w: 46, h: 34 }), x, y });
   });
   EDGES.forEach(([u, v], i) => {
-    scene.link(`e${i}`, { from: `v${u}`, to: `v${v}`, bend: i === 0 || i === 3 || i === 4 ? 0.65 : 0 });
+    scene.link(`e${i}`, { from: `v${u}`, to: `v${v}`, anchor: "center", bend: 0 });
   });
   scene.add("queue", { shape: shapes.pill({ text: "q" }), x: 0.45, y: 5.7 });
   for (let i = 0; i < 2; i++) {

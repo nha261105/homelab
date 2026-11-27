@@ -166,11 +166,11 @@ export function setup(scene: any, shapes: any) {
     });
   });
   scene.add("dist", { shape: shapes.pill({ text: "d" }), x: -0.89, y: 5.7 });
-  for (const { from, to, fare, discounted } of edges) {
+  for (const { from, to, fare } of edges) {
     const id = from + to;
-    scene.link(id, { from, to, bend: discounted ? -0.75 : 0.1 });
+    scene.link(id, { from, to, anchor: "center", arrow: true, bend: 0 });
     scene.add(`w${id}`, {
-      shape: shapes.pill({ text: `${fare} ${discounted ? "↘" : "→"}`, h: 22, pad: 5 }), follow: id,
+      shape: shapes.pill({ text: fare, h: 22, pad: 5 }), follow: id,
     });
   }
 }

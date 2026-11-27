@@ -153,7 +153,7 @@ export function setup(scene: any, shapes: any) {
     scene.add(`d${v}`, { shape: shapes.block({ label: "?", sub: v, w: 44, h: 33 }), x: (i - 2.5) * 0.89, y: 9.8 });
   });
   for (const [parent, child] of EDGES) {
-    scene.link(`e${child}`, { from: `v${parent}`, to: `v${child}`, bend: -0.85 });
+    scene.link(`e${child}`, { from: `v${parent}`, to: `v${child}`, anchor: "center", bend: 0 });
   }
   scene.add("dist", { shape: shapes.pill({ text: "dist[v]", h: 23 }), x: 0, y: 8.35 });
 }

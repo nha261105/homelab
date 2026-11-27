@@ -10,13 +10,13 @@ const positions: Record<Vertex, [number, number]> = {
   C: [3.88, -0.25],
   T: [5.8, 3.4],
 };
-const edges: { from: Vertex; to: Vertex; arrow: string; bend: number }[] = [
-  { from: "S", to: "A", arrow: "↗", bend: -0.55 },
-  { from: "S", to: "B", arrow: "↘", bend: -0.46 },
-  { from: "A", to: "C", arrow: "↗", bend: 0 },
-  { from: "A", to: "T", arrow: "↘", bend: -2.15 },
-  { from: "B", to: "T", arrow: "↗", bend: -1.15 },
-  { from: "C", to: "T", arrow: "↘", bend: -0.95 },
+const edges: { from: Vertex; to: Vertex }[] = [
+  { from: "S", to: "A" },
+  { from: "S", to: "B" },
+  { from: "A", to: "C" },
+  { from: "A", to: "T" },
+  { from: "B", to: "T" },
+  { from: "C", to: "T" },
 ];
 const incoming = (v: Vertex) => edges.filter(({ to }) => to === v).map(({ from }) => from);
 const best = { S: 0, A: -1, B: -1, C: -1, T: -1 };
@@ -50,7 +50,6 @@ function picture(count: number, focus?: Vertex, formulas: string[] = [], showRou
       p: 1, o, cls,
       ...(to === focus ? { from: { p: 0 }, dur: 380 } : {}),
     };
-    scene[`dir${i}`] = { o, cls };
   });
   for (let i = 0; i < 2; ++i) {
     const text = formulas[i] ?? "";
@@ -200,9 +199,8 @@ export function setup(scene: any, shapes: any) {
     const [x, y] = positions[v];
     scene.add(v, { shape: shapes.block({ label: "— · —", sub: v, w: 66, h: 34, depth: 4 }), x, y });
   });
-  edges.forEach(({ from, to, arrow, bend }, i) => {
-    scene.link(`edge${i}`, { from, to, bend });
-    scene.add(`dir${i}`, { shape: shapes.pill({ text: arrow, h: 18, pad: 5 }), follow: `edge${i}` });
+  edges.forEach(({ from, to }, i) => {
+    scene.link(`edge${i}`, { from, to, anchor: "center", arrow: true, bend: 0 });
   });
   scene.add("formula0", { shape: shapes.pill(), x: 2.9, y: 7.42, o: 0 });
   scene.add("formula1", { shape: shapes.pill(), x: 2.9, y: 8.68, o: 0 });

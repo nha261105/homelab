@@ -1,12 +1,12 @@
 import type { Lesson, SceneMap } from "../../../lib/types";
 
-const POSITIONS = [[0, 0], [0, 2.9], [2.35, 0], [2.35, 2.9], [4.7, 1.45]];
+const POSITIONS = [[0, -0.2], [0, 3.2], [2.3, -0.2], [2.3, 3.2], [4.7, 1.5]];
 const EDGES = [
-  { u: 1, v: 3, arrow: "→", bend: 0.15 },
-  { u: 2, v: 3, arrow: "↗", bend: -0.8 },
-  { u: 2, v: 4, arrow: "→", bend: -0.1 },
-  { u: 3, v: 5, arrow: "↘", bend: -0.4 },
-  { u: 4, v: 5, arrow: "↗", bend: -0.4 },
+  { u: 1, v: 3 },
+  { u: 2, v: 3 },
+  { u: 2, v: 4 },
+  { u: 3, v: 5 },
+  { u: 4, v: 5 },
 ];
 
 function picture(order: number[], queue: number[], showRows = true, changed: number[] = []): SceneMap {
@@ -38,7 +38,6 @@ function picture(order: number[], queue: number[], showRows = true, changed: num
     const removed = order.includes(u);
     const justRemoved = u === last && changed.includes(v);
     scene[`e${i}`] = { p: 1, o: removed ? 0.44 : 1, cls: justRemoved ? "v-eq" : "" };
-    scene[`dir${i}`] = { o: removed ? 0.58 : 1, cls: justRemoved ? "v-eq" : "" };
   });
   return scene;
 }
@@ -162,9 +161,8 @@ export function setup(scene: any, shapes: any) {
   POSITIONS.forEach(([x, y], i) => {
     scene.add(`v${i + 1}`, { shape: shapes.block({ label: i + 1, w: 43, h: 32 }), x, y });
   });
-  EDGES.forEach(({ u, v, arrow, bend }, i) => {
-    scene.link(`e${i}`, { from: `v${u}`, to: `v${v}`, bend });
-    scene.add(`dir${i}`, { shape: shapes.pill({ text: arrow, h: 18, pad: 4 }), follow: `e${i}`, s: 1.25 });
+  EDGES.forEach(({ u, v }, i) => {
+    scene.link(`e${i}`, { from: `v${u}`, to: `v${v}`, anchor: "center", arrow: true, bend: 0 });
   });
   scene.add("indeg", { shape: shapes.pill({ text: "indeg" }), x: -0.27, y: 4.5 });
   scene.add("queue", { shape: shapes.pill({ text: "q" }), x: -0.27, y: 5.92 });

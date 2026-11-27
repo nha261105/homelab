@@ -61,6 +61,7 @@ export const lesson: Lesson = {
   watch: [{ key: "i", label: "i" }, { key: "c", label: "c" }, { key: "st", label: { vi: "st (đáy → đỉnh)", en: "st (bottom → top)" } }],
   practice: [
     { src: "LeetCode 20", name: "Valid Parentheses", lv: "★☆☆", url: "https://leetcode.com/problems/valid-parentheses/" },
+    { src: "LeetCode 921", name: "Minimum Add to Make Parentheses Valid", lv: "★★☆", url: "https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/" },
   ],
   sceneOptions: { unit: U },
   legend: [

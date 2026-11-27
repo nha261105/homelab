@@ -3,11 +3,11 @@ import type { Lesson, SceneMap } from "../../../lib/types";
 const vertices = ["A", "B", "C", "D", "E"];
 // Scan in this order so a new distance usually propagates one edge per pass.
 const edges = [
-  { id: "ec", from: "E", to: "C", weight: -5, label: "← −5", bend: 1.65 },
-  { id: "de", from: "D", to: "E", weight: 2, label: "2 →", bend: 0.1 },
-  { id: "cd", from: "C", to: "D", weight: 2, label: "2 →", bend: 0.1 },
-  { id: "bc", from: "B", to: "C", weight: -3, label: "−3 →", bend: 0.1 },
-  { id: "ab", from: "A", to: "B", weight: 4, label: "4 →", bend: 0.1 },
+  { id: "ec", from: "E", to: "C", weight: -5, bend: -3.3 },
+  { id: "de", from: "D", to: "E", weight: 2, bend: 0.1 },
+  { id: "cd", from: "C", to: "D", weight: 2, bend: 0.1 },
+  { id: "bc", from: "B", to: "C", weight: -3, bend: 0.1 },
+  { id: "ab", from: "A", to: "B", weight: 4, bend: 0.1 },
 ];
 const distances = [[0, Infinity, Infinity, Infinity, Infinity]];
 for (let pass = 1; pass <= vertices.length; pass++) {
@@ -166,8 +166,8 @@ export function setup(scene: any, shapes: any) {
     scene.add(`d${v}`, { shape: shapes.block({ label: "∞", sub: v, w: 45, h: 34 }), x, y: 3.2 });
   });
   scene.add("dist", { shape: shapes.pill({ text: "d" }), x: -0.87, y: 2.91 });
-  for (const { id, from, to, label, bend } of edges) {
-    scene.link(id, { from, to, bend });
-    scene.add(`w${id}`, { shape: shapes.pill({ text: label, h: 22, pad: 5 }), follow: id });
+  for (const { id, from, to, weight, bend } of edges) {
+    scene.link(id, { from, to, anchor: "center", arrow: true, bend });
+    scene.add(`w${id}`, { shape: shapes.pill({ text: String(weight).replace("-", "−"), h: 22, pad: 5 }), follow: id });
   }
 }

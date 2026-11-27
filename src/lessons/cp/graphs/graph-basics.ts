@@ -154,10 +154,7 @@ export function setup(scene: any, shapes: any) {
     scene.add(`v${u}`, { shape: shapes.block({ label: u, w: 42, h: 31 }), x, y, shadow: true });
   });
   for (const [u, v] of edges) {
-    const [x1, y1] = positions[u - 1];
-    const [x2, y2] = positions[v - 1];
-    const bend = y2 === y1 ? -0.55 : -Math.abs(y2 - y1) * U / (8 * (14 + Math.abs(x2 - x1) * U * 0.08));
-    scene.link(edgeId(u, v), { from: `v${u}`, to: `v${v}`, bend });
+    scene.link(edgeId(u, v), { from: `v${u}`, to: `v${v}`, anchor: "center", bend: 0 });
   }
   scene.add("list", { shape: shapes.pill({ text: "adj" }), x: 5.1, y: -0.1, o: 0 });
   scene.add("matrix", { shape: shapes.pill({ text: "mat" }), x: 5.7, y: -0.1, o: 0 });

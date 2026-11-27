@@ -167,7 +167,7 @@ export function setup(scene: any, shapes: any) {
     scene.add(`v${v}`, { shape: shapes.block({ label: v, w: 42, h: 30, depth: 4 }), x, y });
   });
   VERTICES.slice(1).forEach((v) => {
-    scene.link(`edge${v}`, { from: `v${PARENT[v]}`, to: `v${v}`, bend: 0, p: 1 });
+    scene.link(`edge${v}`, { from: `v${PARENT[v]}`, to: `v${v}`, anchor: "center", bend: 0, p: 1 });
   });
   scene.link("align", { from: "v8", to: "v5", bend: 1.3 });
   scene.add("length", { shape: shapes.pill({ text: "2¹ = 2", h: 22 }), follow: "align", o: 0 });

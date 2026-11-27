@@ -1,13 +1,13 @@
 import type { Lesson, SceneMap } from "../../../lib/types";
 
-const POSITIONS = [[0, 1], [1.25, 1], [3.65, 1], [2.45, 4.15], [2.45, -2.15]];
+const POSITIONS = [[0, 1], [1.55, 1], [3.65, 1], [2.6, 4.5], [2.6, -2.5]];
 const EDGES = [
-  { u: 1, v: 2, arrow: "→", bend: 0.5 },
-  { u: 2, v: 5, arrow: "↗", bend: 0 },
-  { u: 2, v: 3, arrow: "→", bend: 0 },
-  { u: 3, v: 5, arrow: "↖", bend: 0 },
-  { u: 3, v: 4, arrow: "↙", bend: 0 },
-  { u: 4, v: 2, arrow: "↖", bend: 0 },
+  { u: 1, v: 2 },
+  { u: 2, v: 5 },
+  { u: 2, v: 3 },
+  { u: 3, v: 5 },
+  { u: 3, v: 4 },
+  { u: 4, v: 2 },
 ];
 
 function picture(stack: number[], done: number[], focus: number[] = [], cycle = false): SceneMap {
@@ -19,7 +19,6 @@ function picture(stack: number[], done: number[], focus: number[] = [], cycle = 
   EDGES.forEach((_, i) => {
     const cls = focus.includes(i) ? (cycle ? "v-gt" : "v-lt") : "";
     scene[`e${i}`] = { p: 1, cls };
-    scene[`dir${i}`] = { cls };
   });
   for (let i = 0; i < 4; i++) {
     scene[`s${i}`] = { text: String(stack[i] ?? "—"), o: stack.length ? 1 : 0, cls: stack[i] ? "is-active" : "is-out" };
@@ -141,9 +140,8 @@ export function setup(scene: any, shapes: any) {
   POSITIONS.forEach(([x, y], i) => {
     scene.add(`v${i + 1}`, { shape: shapes.block({ label: i + 1, w: 43, h: 32 }), x, y });
   });
-  EDGES.forEach(({ u, v, arrow, bend }, i) => {
-    scene.link(`e${i}`, { from: `v${u}`, to: `v${v}`, bend });
-    scene.add(`dir${i}`, { shape: shapes.pill({ text: arrow, h: 18, pad: 4 }), follow: `e${i}`, s: 1.25 });
+  EDGES.forEach(({ u, v }, i) => {
+    scene.link(`e${i}`, { from: `v${u}`, to: `v${v}`, anchor: "center", arrow: true, bend: 0 });
   });
   scene.add("stack", { shape: shapes.pill({ text: "DFS" }), x: -0.02, y: 5.95 });
   for (let i = 0; i < 4; i++) {

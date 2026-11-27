@@ -163,7 +163,7 @@ export function setup(scene: any, shapes: any) {
   });
   for (const [u, v, weight, bend] of EDGES) {
     const id = u + v;
-    scene.link(`edge${id}`, { from: u, to: v, bend });
+    scene.link(`edge${id}`, { from: u, to: v, anchor: "center", bend });
     scene.add(`weight${id}`, { shape: shapes.pill({ text: weight, h: 22, pad: 7 }), follow: `edge${id}`, s: 0.88 });
   }
   scene.add("best", { shape: shapes.pill({ text: "best[v]" }), x: 2.3, y: 5.95 });

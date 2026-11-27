@@ -159,10 +159,7 @@ export function setup(scene: any, shapes: any) {
     scene.add(`v${u}`, { shape: shapes.block({ label: u, w: 45, h: 33 }), x, y, shadow: true });
   });
   for (const [u, v] of edges) {
-    const [x1, y1] = positions[u - 1];
-    const [x2, y2] = positions[v - 1];
-    const bend = y2 === y1 ? -0.55 : -Math.abs(y2 - y1) * U / (8 * (14 + Math.abs(x2 - x1) * U * 0.08));
-    scene.link(`e${u}-${v}`, { from: `v${u}`, to: `v${v}`, bend });
+    scene.link(`e${u}-${v}`, { from: `v${u}`, to: `v${v}`, anchor: "center", bend: 0 });
   }
   scene.add("stack", { shape: shapes.pill({ text: "dfs" }), x: 0.43, y: 8.25 });
   for (let i = 0; i < 3; i++) {

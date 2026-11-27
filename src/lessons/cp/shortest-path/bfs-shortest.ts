@@ -173,5 +173,5 @@ export function setup(scene: any, shapes: any) {
   });
   scene.add("parent", { shape: shapes.pill({ text: "parent", h: 23, pad: 5 }), x: -0.4, y: 6.97 });
   scene.add("queue", { shape: shapes.pill({ text: "q", h: 23, pad: 5 }), x: -0.4, y: 9.5 });
-  EDGES.forEach(([from, to, bend]) => scene.link(from + to, { from, to, bend }));
+  EDGES.forEach(([from, to, bend]) => scene.link(from + to, { from, to, anchor: "center", bend }));
 }

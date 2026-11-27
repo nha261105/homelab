@@ -155,7 +155,7 @@ export function setup(scene: any, shapes: any) {
   }
   EDGES.forEach(([u, v, weight, bend], i) => {
     const id = u + v;
-    scene.link(`edge${id}`, { from: u, to: v, bend });
+    scene.link(`edge${id}`, { from: u, to: v, anchor: "center", bend });
     scene.add(`weight${id}`, { shape: shapes.pill({ text: weight, h: 22, pad: 7 }), follow: `edge${id}`, s: 0.88 });
     scene.add(`slot${id}`, { shape: shapes.block({ label: weight, sub: `${u}–${v}`, w: 39, h: 30 }), x: i * 0.77, y: 6.45 });
   });

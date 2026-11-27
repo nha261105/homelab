@@ -150,7 +150,7 @@ export function setup(scene: any, shapes: any) {
     scene.add(`a${i}`, { shape: shapes.block({ label: "?", sub: i, w: 44, h: 33 }), x: (i - 2.5) * 0.89, y: 10.6 });
   });
   for (const [parent, child] of EDGES) {
-    scene.link(`e${child}`, { from: `v${parent}`, to: `v${child}`, bend: -0.85 });
+    scene.link(`e${child}`, { from: `v${parent}`, to: `v${child}`, anchor: "center", bend: 0 });
   }
   scene.add("order", { shape: shapes.pill({ text: "order[i]", h: 23 }), x: 0, y: 9.1 });
 }

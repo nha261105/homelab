@@ -146,6 +146,6 @@ export function setup(scene: any, shapes: any) {
     scene.add(`v${v}`, { shape: shapes.block({ label: "?", sub: `v = ${v}`, w: 49, h: 37 }), x, y });
   }
   for (const [parent, child] of EDGES) {
-    scene.link(`e${child}`, { from: `v${parent}`, to: `v${child}`, bend: -0.85 });
+    scene.link(`e${child}`, { from: `v${parent}`, to: `v${child}`, anchor: "center", bend: 0 });
   }
 }

@@ -6,7 +6,7 @@ const roads = [
   { u: 1, v: 2, w: 2, bend: 0.1 },
   { u: 2, v: 3, w: 4, bend: 0.1 },
   { u: 3, v: 4, w: 1, bend: 0.1 },
-  { u: 0, v: 2, w: 9, bend: 1.4 },
+  { u: 0, v: 2, w: 9, bend: -3.5 },
 ];
 
 const direct = vertices.map((_, i) => vertices.map((_, j) => i === j ? 0 : Infinity));
@@ -166,7 +166,7 @@ export function setup(scene: any, shapes: any) {
   });
   scene.add("matrix", { shape: shapes.pill({ text: "d[i][j]" }), x: -0.15, y: 1.38 });
   roads.forEach(({ u, v, w, bend }, i) => {
-    scene.link(`road${i}`, { from: vertices[u], to: vertices[v], bend, p: 1 });
+    scene.link(`road${i}`, { from: vertices[u], to: vertices[v], anchor: "center", bend, p: 1 });
     scene.add(`w${i}`, { shape: shapes.pill({ text: w, h: 20, pad: 5 }), follow: `road${i}` });
   });
 }

@@ -87,7 +87,7 @@ export const lesson: Lesson = {
   ],
   practice: [
     { src: "CSES 1647", name: "Static Range Minimum Queries", lv: "★☆☆", url: "https://cses.fi/problemset/task/1647" },
-    { src: "LeetCode 239", name: "Sliding Window Maximum", lv: "★★★", url: "https://leetcode.com/problems/sliding-window-maximum/" },
+    { src: "BOJ 2357", name: "Minimum and Maximum", lv: "★★☆", url: "https://acmicpc.net/problem/2357" },
   ],
   sceneOptions: { unit: U, view: [-90, -136, 530, 360] },
   legend: [

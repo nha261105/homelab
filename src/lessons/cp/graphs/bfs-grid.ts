@@ -160,7 +160,7 @@ export function setup(scene: any, shapes: any) {
     });
   }
   for (const id of edges) {
-    scene.link(id, { from: id[0], to: id[1], bend: id === "SA" || id === "BC" || id === "CD" || id === "ET" ? -0.6 : 0 });
+    scene.link(id, { from: id[0], to: id[1], anchor: "center", bend: 0 });
   }
   scene.add("queue", { shape: shapes.pill({ text: "q" }), x: 0, y: 7.25 });
   for (let i = 0; i < 2; i++) {

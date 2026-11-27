@@ -7,15 +7,14 @@ const A = [
   [1, 1, 1, 1],
 ];
 const N = A.length, M = A[0].length;
-const U = 40;
-const OFFSET = 4.5;
-const ROW = 2.71;
+const U = 58;
+const ROW = 1.69;
+const HEADER = 0.66;
+const sceneOptions = { unit: U, pad: 7 };
 type Cell = [number, number];
 const cells: Cell[] = A.flatMap((row, i) => row.map((_, j): Cell => [i + 1, j + 1]));
 const lowbit = (i: number) => i & -i;
-const id = (table: "a" | "b", i: number, j: number) => `${table}${i}-${j}`;
-const all = ["labA", "labB", "calc", ...cells.flatMap(([i, j]) => [id("a", i, j), id("b", i, j)])];
-const gridOnly = ["labA", ...cells.map(([i, j]) => id("a", i, j))];
+const id = (i: number, j: number) => `cell${i}-${j}`;
 
 function add(bit: number[][], r: number, c: number, delta: number): Cell[] {
   const changed: Cell[] = [];
@@ -57,40 +56,46 @@ const good = "is-good";
 const dim = "is-out";
 
 function picture(
-  phase: "input" | "initial" | "updated",
-  gridMark: (i: number, j: number) => string,
-  marks: [Cell[], string][] = [],
+  table: number[][],
+  label: "a" | "bit",
+  mark: (i: number, j: number) => string,
   formula = "",
   result = false,
 ): SceneMap {
   const scene: SceneMap = {
-    labB: { o: phase === "input" ? 0 : 1 },
+    gridLabel: { text: label },
     calc: { text: formula, o: formula ? 1 : 0, cls: result ? "v-eq" : "" },
   };
-  const bitClasses = Object.fromEntries(marks.flatMap(([group, cls]) =>
-    group.map(([i, j]) => [id("b", i, j), cls])));
-  const bit = phase === "updated" ? updated : initial;
   for (const [i, j] of cells) {
-    const toggled = phase === "updated" && i === 3 && j === 3;
-    const cls = gridMark(i, j);
-    scene[id("a", i, j)] = { text: String(toggled ? 1 : A[i - 1][j - 1]), cls, o: cls === dim ? 0.65 : 1 };
-    const key = id("b", i, j);
-    scene[key] = { text: String(bit[i][j]), cls: bitClasses[key] ?? "", o: phase === "input" ? 0 : 1 };
+    const cls = mark(i, j);
+    scene[id(i, j)] = { text: String(table[i][j]), cls, o: cls === dim ? 0.65 : 1 };
   }
   return scene;
 }
 
+function bitPicture(
+  bit: number[][],
+  marks: [Cell[], string][],
+  formula: string,
+): SceneMap {
+  const classes = Object.fromEntries(marks.flatMap(([group, cls]) =>
+    group.map(([i, j]) => [id(i, j), cls])));
+  return picture(bit, "bit", (i, j) => classes[id(i, j)] ?? dim, formula);
+}
+
 const inQuery = (i: number, j: number) => i >= 2 && i <= 3 && j >= 2;
-const queryMarks: [Cell[], string][] = [[whole.used, active], [top.used, removed], [left.used, removed], [corner.used, good]];
-const updatePicture = picture("updated", (i, j) => i === 3 && j === 3 ? good : dim,
-  [[changed, good]], "bit[4][4] = 10 + 1 = 11");
+const input = [[], ...A.map((row) => [0, ...row])];
+const planted = input.map((row) => [...row]);
+planted[3][3] += 1;
+const queryMarks: [Cell[], string][] = [[whole.used, active], [top.used, removed], [left.used, removed]];
+const updatePicture = bitPicture(updated, [[changed, good]], "10 + 1 = 11");
 changed.forEach(([i, j], index) => {
-  Object.assign(updatePicture[id("b", i, j)], {
-    delay: 120 + 110 * index, fx: { type: "pulse", amp: 0.07 },
+  Object.assign(updatePicture[id(i, j)], {
+    fx: { type: "pulse", amp: 0.07, delay: 120 + 110 * index },
   });
 });
 Object.assign(updatePicture.calc, { from: { o: 0 }, delay: 570, dur: 300 });
-const resultPicture = () => picture("updated", (i, j) => inQuery(i, j) ? good : dim, queryMarks, expression, true);
+const resultPicture = () => picture(planted, "a", (i, j) => inQuery(i, j) ? good : dim, expression, true);
 
 export const lesson: Lesson = {
   track: "cp",
@@ -135,13 +140,13 @@ export const lesson: Lesson = {
     { src: "CSES 1739", name: "Forest Queries II", lv: "★★☆", url: "https://cses.fi/problemset/task/1739" },
     { src: "LeetCode 308", name: "Range Sum Query 2D - Mutable", lv: "★★★", url: "https://leetcode.com/problems/range-sum-query-2d-mutable/" },
   ],
-  sceneOptions: { unit: U, view: [-43, -138, 390, 333] },
+  sceneOptions,
   legend: [
     { cls: "acc", label: { vi: "ô đang dùng", en: "cells in use" } },
     { cls: "wa", label: { vi: "phần bị trừ", en: "subtracted area" } },
     { cls: "ac", label: { vi: "ô vừa đổi hoặc vùng kết quả", en: "updated cell or result area" } },
   ],
-  entrance: cells.filter(([i, j]) => inQuery(i, j)).map(([i, j]) => id("a", i, j)),
+  entrance: cells.filter(([i, j]) => inQuery(i, j)).map(([i, j]) => id(i, j)),
   steps: [
     {
       title: { vi: "Đếm cây sau khi sửa", en: "Count trees after edits" }, kind: "problem",
@@ -149,8 +154,8 @@ export const lesson: Lesson = {
         vi: "Trong lưới 4×4 đánh số từ 1, ô 1 có cây và ô 0 còn trống. Ta sẽ trồng cây ở <code>(3, 3)</code> rồi đếm cây trong vùng tô sáng. Cộng từng ô có thể tốn O(nm) mỗi truy vấn.",
         en: "In this 1-indexed 4×4 grid, 1 marks a tree and 0 marks an empty cell. Plant a tree at <code>(3, 3)</code>, then count trees in the highlighted rectangle. Scanning cells can cost O(nm) per query.",
       },
-      lines: [], watch: {}, verdict: "run", fit: gridOnly,
-      scene: picture("input", (i, j) => inQuery(i, j) ? active : dim),
+      lines: [], watch: {}, verdict: "run", fit: "all",
+      scene: picture(input, "a", (i, j) => inQuery(i, j) ? active : dim),
     },
     {
       title: { vi: "Mỗi ô giữ một khối", en: "Each entry stores a block" }, kind: "concept",
@@ -162,8 +167,8 @@ export const lesson: Lesson = {
         vi: "Để dựng bảng, khởi tạo toàn số 0 rồi gọi <code>add</code> với giá trị của từng ô.",
         en: "To build the table, start with zeros and call <code>add</code> with each grid cell’s value.",
       },
-      lines: [1, 2, 3, 4], watch: { sum: 4 }, verdict: "run", fit: all,
-      scene: picture("initial", (i) => i <= 2 ? active : dim, [[[[2, 4]], good]], "bit[2][4] = 1 + 3 = 4"),
+      lines: [1, 2, 3, 4], watch: { sum: 4 }, verdict: "run", fit: "all",
+      scene: bitPicture(initial, [[[[2, 4]], good]], "1 + 3 = 4"),
     },
     {
       title: { vi: "Cập nhật bốn khối", en: "Update four blocks" }, kind: "step",
@@ -171,7 +176,7 @@ export const lesson: Lesson = {
         vi: "Ô <code>a[3][3]</code> đổi từ 0 thành 1, nên gọi <code>add(3, 3, 1)</code>. Ở cả hai chiều, cộng lowbit đưa 3 lên 4 rồi 8, vượt biên. Bốn ô Fenwick tô xanh là các khối chứa ô vừa sửa, nên mỗi ô tăng 1.",
         en: "<code>a[3][3]</code> changes from 0 to 1, so call <code>add(3, 3, 1)</code>. In each dimension, adding lowbit moves from 3 to 4 and then out of bounds at 8. The four green Fenwick entries cover the edited cell and each gains 1.",
       },
-      lines: [2, 3, 4], watch: { call: "add(3, 3, 1)" }, verdict: "run", fit: all,
+      lines: [2, 3, 4], watch: { call: "add(3, 3, 1)" }, verdict: "run", fit: "all",
       scene: updatePicture,
     },
     {
@@ -180,8 +185,8 @@ export const lesson: Lesson = {
         vi: "Để tính <code>pref(3, 4)</code>, trừ lowbit cho chỉ số cột: 4 → 0. Với chỉ số hàng, 3 → 2 → 0. Vì thế lấy <code>bit[3][4] = 3</code> cho hàng 3 và <code>bit[2][4] = 4</code> cho hai hàng trên, tổng là 7.",
         en: "For <code>pref(3, 4)</code>, subtract lowbit to move the column 4 → 0 and the row 3 → 2 → 0. Take <code>bit[3][4] = 3</code> for row 3 and <code>bit[2][4] = 4</code> for the first two rows, for a total of 7.",
       },
-      lines: [6, 7, 8, 9, 10, 13], watch: { call: "pref(3, 4)", sum: whole.sum }, verdict: "run", fit: all,
-      scene: picture("updated", (i) => i <= 3 ? active : dim, [[whole.used, active]], "pref(3, 4) = 3 + 4 = 7"),
+      lines: [6, 7, 8, 9, 10, 13], watch: { call: "pref(3, 4)", sum: whole.sum }, verdict: "run", fit: "all",
+      scene: bitPicture(updated, [[whole.used, active]], "3 + 4 = 7"),
     },
     {
       title: { vi: "Trừ hàng phía trên", en: "Subtract the top row" }, kind: "step",
@@ -189,8 +194,8 @@ export const lesson: Lesson = {
         vi: "Vùng cần hỏi bắt đầu từ hàng 2, nên trừ <code>pref(1, 4) = bit[1][4] = 1</code> để loại hàng đầu. Còn lại <code>7 − 1 = 6</code>.",
         en: "The query starts at row 2, so subtract <code>pref(1, 4) = bit[1][4] = 1</code> to remove the first row. That leaves <code>7 − 1 = 6</code>.",
       },
-      lines: [8, 9, 13], watch: { call: "pref(1, 4)", sum: whole.sum - top.sum }, verdict: "run", fit: all,
-      scene: picture("updated", (i) => i === 1 ? removed : i <= 3 ? active : dim, queryMarks.slice(0, 2), "7 − 1 = 6"),
+      lines: [8, 9, 13], watch: { call: "pref(1, 4)", sum: whole.sum - top.sum }, verdict: "run", fit: "all",
+      scene: bitPicture(updated, queryMarks.slice(0, 2), "7 − 1 = 6"),
     },
     {
       title: { vi: "Trừ cột bên trái", en: "Subtract the left column" }, kind: "step",
@@ -198,8 +203,8 @@ export const lesson: Lesson = {
         vi: "Vùng bắt đầu từ cột 2, nên trừ <code>pref(3, 1)</code>. Hai khối Fenwick ở cột 1 có tổng <code>1 + 1 = 2</code>. Ô góc <code>(1, 1)</code> nằm trong cả hai phần bị trừ.",
         en: "The query starts at column 2, so subtract <code>pref(3, 1)</code>. Its two Fenwick blocks in column 1 sum to <code>1 + 1 = 2</code>. The corner <code>(1, 1)</code> belongs to both subtracted areas.",
       },
-      lines: [8, 9, 13], watch: { call: "pref(3, 1)", sum: whole.sum - top.sum - left.sum }, verdict: "run", fit: all,
-      scene: picture("updated", (i, j) => i > 3 ? dim : i === 1 || j === 1 ? removed : active, queryMarks.slice(0, 3), "7 − 1 − (1 + 1) = 4"),
+      lines: [8, 9, 13], watch: { call: "pref(3, 1)", sum: whole.sum - top.sum - left.sum }, verdict: "run", fit: "all",
+      scene: bitPicture(updated, queryMarks, "7 − 1 − 2 = 4"),
     },
     {
       title: { vi: "Cộng lại ô góc", en: "Restore the shared corner" }, kind: "answer",
@@ -207,7 +212,7 @@ export const lesson: Lesson = {
         vi: "Cộng lại <code>pref(1, 1) = 0</code> để ô góc chỉ bị loại một lần. Vùng tô xanh có <code>7 − 1 − 2 + 0 = 4</code> cây, trong đó có cây mới ở <code>(3, 3)</code>.",
         en: "Add back <code>pref(1, 1) = 0</code> so the shared corner is removed exactly once. The green rectangle contains <code>7 − 1 − 2 + 0 = 4</code> trees, including the new one at <code>(3, 3)</code>.",
       },
-      lines: [12, 13], watch: { call: "rect(2, 2, 3, 4)", sum: answer }, verdict: "ac", fit: all, scene: resultPicture(),
+      lines: [12, 13], watch: { call: "rect(2, 2, 3, 4)", sum: answer }, verdict: "ac", fit: "all", scene: resultPicture(),
     },
     {
       title: { vi: "Hai vòng nhảy lowbit", en: "Two nested lowbit loops" }, kind: "recap",
@@ -215,23 +220,18 @@ export const lesson: Lesson = {
         vi: "Cộng lowbit để tìm các khối chứa ô vừa sửa. Trừ lowbit để ghép các khối rời nhau phủ đúng một prefix. Với bốn prefix cho mỗi hình chữ nhật, cả truy vấn lẫn cập nhật tốn O(log(n+1) · log(m+1)), bảng chiếm O(nm).",
         en: "Add lowbit to find blocks that contain the edited cell. Subtract lowbit to tile a prefix with disjoint blocks. A rectangle uses four prefixes, so both queries and updates take O(log(n+1) · log(m+1)), with O(nm) storage.",
       },
-      lines: [3, 4, 8, 9, 13], watch: { call: "rect(2, 2, 3, 4)", sum: answer }, verdict: "ac", fit: all, scene: resultPicture(),
+      lines: [3, 4, 8, 9, 13], watch: { call: "rect(2, 2, 3, 4)", sum: answer }, verdict: "ac", fit: "all", scene: resultPicture(),
     },
   ],
 };
 
 export function setup(scene: any, shapes: any) {
-  scene.add("labA", { shape: shapes.pill({ text: "a" }), x: 1.5, z: 1.02 });
-  scene.add("labB", { shape: shapes.pill({ text: "bit" }), x: OFFSET + 1.5, z: 1.02, o: 0 });
+  scene.add("gridLabel", { shape: shapes.pill({ text: "a" }), z: HEADER });
   for (const [i, j] of cells) {
-    const y = (i - 1) * ROW;
-    const sub = `${i},${j}`;
-    scene.add(id("a", i, j), {
-      shape: shapes.block({ label: A[i - 1][j - 1], sub, w: 35, h: 21, depth: 3, r: 6 }), x: j - 1, y,
-    });
-    scene.add(id("b", i, j), {
-      shape: shapes.block({ label: initial[i][j], sub, w: 35, h: 21, depth: 3, r: 6 }), x: OFFSET + j - 1, y, o: 0,
+    scene.add(id(i, j), {
+      shape: shapes.block({ label: input[i][j], w: 50, h: 24, depth: 3, r: 7 }),
+      x: j - 1, y: (i - 1) * ROW,
     });
   }
-  scene.add("calc", { shape: shapes.pill(), x: (OFFSET + 3) / 2, y: 11.05, o: 0 });
+  scene.add("calc", { shape: shapes.pill({ pad: 7 }), x: 1.95, z: HEADER, s: 0.9, o: 0 });
 }
