@@ -309,7 +309,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 1 | `ordered-set` | Ordered set (PBDS) | Order-statistics tree | Hỏi "phần tử thứ k" và "có bao nhiêu số < x" trong O(log n) | CSES 1076 Sliding Median · CSES 1144 Salary Queries | ✅ |
 | 2 | `dsu-rollback` | DSU có hoàn tác | DSU with rollback | Bỏ nén đường đi, lưu thay đổi vào stack để quay lui | CSES 2133 Dynamic Connectivity | ✅ |
 | 3 | `treap` | Treap | Treap | Cây vừa là BST theo khoá vừa là heap theo độ ưu tiên ngẫu nhiên; tách và gộp | CSES 2072 Cut and Paste | ✅ |
-| 4 | `implicit-treap` | Treap ẩn: đảo đoạn | Implicit treap: reversing ranges | Khoá là vị trí; cờ lazy "đảo" đẩy xuống khi đi qua | CSES 2073 Substring Reversals · CSES 2074 Reversals and Sums | ⬜ |
+| 4 | `implicit-treap` | Treap ẩn: đảo đoạn | Implicit treap: reversing ranges | Khoá là vị trí; cờ lazy "đảo" đẩy xuống khi đi qua | CSES 2073 Substring Reversals · CSES 2074 Reversals and Sums | ✅ |
 
 ---
 
