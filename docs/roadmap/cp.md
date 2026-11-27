@@ -247,7 +247,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 |---|---|---|---|---|---|---|
 | 1 | `max-flow` | Luồng cực đại (Dinic) | Maximum flow (Dinic) | Đồ thị phân tầng bằng BFS, đẩy luồng chặn bằng DFS, cạnh ngược để hoàn tác | CSES 1694 Download Speed | ✅ |
 | 2 | `min-cut` | Lát cắt nhỏ nhất | Minimum cut | Sau khi hết luồng: các đỉnh còn tới được từ nguồn tạo thành một phía của lát cắt | CSES 1695 Police Chase | ✅ |
-| 3 | `bipartite-matching` | Ghép cặp hai phía | Bipartite matching | Đường tăng luồng xen kẽ; hoặc dựng luồng với nguồn và đích | CSES 1696 School Dance · CSES 1711 Distinct Routes | ⬜ |
+| 3 | `bipartite-matching` | Ghép cặp hai phía | Bipartite matching | Đường tăng luồng xen kẽ; hoặc dựng luồng với nguồn và đích | CSES 1696 School Dance · CSES 1711 Distinct Routes | ✅ |
 
 ### 23. Cây nâng cao · Advanced Trees · key `trees-adv` · Đợt 6
 
