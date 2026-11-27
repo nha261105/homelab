@@ -131,7 +131,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 3 | `dfs-components` | Đếm thành phần liên thông | Counting components | DFS tô màu từng vùng | CSES 1192 Counting Rooms · LeetCode 200 | ✅ |
 | 4 | `bipartite` | Đồ thị hai phía | Bipartite check | Tô xen kẽ hai màu; cạnh nối hai đỉnh cùng màu thì thất bại | CSES 1668 Building Teams · LeetCode 785 | ✅ |
 | 5 | `cycle-detect` | Tìm chu trình | Finding a cycle | DFS ba màu trắng/xám/đen; gặp đỉnh xám là có chu trình | CSES 1669 Round Trip · CSES 1678 Round Trip II | ✅ |
-| 6 | `topo-sort` | Sắp xếp tô-pô | Topological sort | Đồ thị môn học: lấy dần các đỉnh có bậc vào = 0 (Kahn) | CSES 1679 Course Schedule · LeetCode 207 | ⬜ |
+| 6 | `topo-sort` | Sắp xếp tô-pô | Topological sort | Đồ thị môn học: lấy dần các đỉnh có bậc vào = 0 (Kahn) | CSES 1679 Course Schedule · LeetCode 207 | ✅ |
 
 ### 11. Đường đi ngắn nhất · Shortest Paths · key `shortest-path` · Đợt 3
 
