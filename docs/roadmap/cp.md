@@ -169,7 +169,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 1 | `stairs` | Leo cầu thang | Climbing stairs | Từ cây đệ quy (chương 02) sang bảng `dp` một chiều | LeetCode 70 · CSES 1633 Dice Combinations | ✅ |
 | 2 | `coin-change` | Đổi tiền | Coin change | Bảng `dp[x]`: ít đồng nhất, rồi đếm số cách | CSES 1634 Minimizing Coins · CSES 1635 · CSES 1636 | ✅ |
 | 3 | `grid-paths` | Đếm đường đi trên lưới | Counting grid paths | Mỗi ô = trên + trái, ô có vật cản bằng 0 | LeetCode 62 · CSES 1638 Grid Paths | ✅ |
-| 4 | `knapsack` | Cái túi 0/1 | 0/1 knapsack | Bảng vật × sức chứa; chọn hoặc bỏ từng vật | CSES 1158 Book Shop · LeetCode 416 · CSES 1745 Money Sums | ⬜ |
+| 4 | `knapsack` | Cái túi 0/1 | 0/1 knapsack | Bảng vật × sức chứa; chọn hoặc bỏ từng vật | CSES 1158 Book Shop · LeetCode 416 · CSES 1745 Money Sums | ✅ |
 | 5 | `lis` | Dãy con tăng dài nhất | Longest increasing subsequence | O(n²) trước, rồi O(n log n) với mảng "đuôi" + lower_bound | LeetCode 300 · CSES 1145 Increasing Subsequence | ⬜ |
 | 6 | `edit-distance` | LCS & khoảng cách chỉnh sửa | LCS and edit distance | Bảng 2 chiều giữa hai chuỗi: thêm, xoá, thay | LeetCode 1143 · LeetCode 72 · CSES 1639 Edit Distance | ⬜ |
 | 7 | `dag-dp` | DP trên DAG | DP on a DAG | Thứ tự tô-pô; đường dài nhất / số đường đi | CSES 1680 Longest Flight Route · CSES 1681 Game Routes | ⬜ |
