@@ -218,7 +218,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 |---|---|---|---|---|---|---|
 | 1 | `lazy-propagation` | Lazy propagation | Lazy propagation | Cập nhật cả đoạn: gắn "nợ" ở nút, chỉ đẩy xuống khi cần đi qua | CSES 1735 Range Updates and Sums · CSES 1736 Polynomial Queries | ✅ |
 | 2 | `segtree-merge` | Nút lưu nhiều thông tin | Nodes that store more | Nút giữ (tổng, max tiền tố, max hậu tố, max đoạn con) và cách gộp hai nút | CSES 1190 Subarray Sum Queries · CSES 2166 Prefix Sum Queries | ✅ |
-| 3 | `segtree-descend` | Đi xuống trên segment tree | Walking down the tree | Tìm vị trí đầu tiên ≥ x bằng cách rẽ trái/phải tại mỗi nút | CSES 1143 Hotel Queries | ⬜ |
+| 3 | `segtree-descend` | Đi xuống trên segment tree | Walking down the tree | Tìm vị trí đầu tiên ≥ x bằng cách rẽ trái/phải tại mỗi nút | CSES 1143 Hotel Queries | ✅ |
 | 4 | `coordinate-compress` | Nén toạ độ | Coordinate compression | Giá trị đến 10⁹ ánh xạ về chỉ số 0..n−1 để dựng cây | CSES 1144 Salary Queries | ⬜ |
 | 5 | `persistent-segtree` | Segment tree bền vững | Persistent segment tree | Mỗi lần cập nhật chỉ tạo mới O(log n) nút, các phiên bản dùng chung phần còn lại | CSES 1737 Range Queries and Copies · SPOJ MKTHNUM | ⬜ |
 
