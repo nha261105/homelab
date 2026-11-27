@@ -188,7 +188,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `gcd` | Euclid & Euclid mở rộng | Euclid and extended Euclid | Hình chữ nhật 48×18 cắt dần thành hình vuông; truy ngược ra `ax + by = g` | CSES 1081 Common Divisors | ✅ |
-| 2 | `sieve` | Sàng nguyên tố | Sieve of Eratosthenes | Lưới 1..50, gạch bội của 2, 3, 5, 7 | LeetCode 204 · CSES 1713 Counting Divisors | ⬜ |
+| 2 | `sieve` | Sàng nguyên tố | Sieve of Eratosthenes | Lưới 1..50, gạch bội của 2, 3, 5, 7 | LeetCode 204 · CSES 1713 Counting Divisors | ✅ |
 | 3 | `mod-pow` | Luỹ thừa nhanh & modulo | Fast power and modulo | `3^13` theo các bit của 13 = 1101₂ | CSES 1095 Exponentiation · CSES 1617 Bit Strings | ⬜ |
 | 4 | `mod-inverse` | Nghịch đảo modulo | Modular inverse | Fermat: `a^(p−2) mod p`; chia trong modulo | CSES 1712 Exponentiation II | ⬜ |
 | 5 | `binomial` | Tổ hợp C(n, k) mod p | Binomials mod p | Giai thừa và nghịch đảo tính sẵn | CSES 1079 Binomial Coefficients · CSES 1715 Creating Strings II | ⬜ |
