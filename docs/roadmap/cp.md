@@ -253,7 +253,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `tree-dp` | DP trên cây | Tree DP | Mỗi đỉnh hai trạng thái: lấy / không lấy cạnh tới con | CSES 1130 Tree Matching · CSES 1132 Tree Distances I | ⬜ |
+| 1 | `tree-dp` | DP trên cây | Tree DP | Mỗi đỉnh hai trạng thái: lấy / không lấy cạnh tới con | CSES 1130 Tree Matching · CSES 1132 Tree Distances I | ✅ |
 | 2 | `rerooting` | Đổi gốc | Rerooting | Tính cho một gốc, rồi dời gốc sang con và sửa đáp án trong O(1) | CSES 1133 Tree Distances II | ⬜ |
 | 3 | `small-to-large` | Gộp nhỏ vào lớn | Small-to-large merging | Mỗi đỉnh giữ một set; luôn đổ set nhỏ vào set lớn | CSES 1139 Distinct Colors | ⬜ |
 | 4 | `hld` | Heavy-light decomposition | Heavy-light decomposition | Cây tách thành các chuỗi nặng; đường đi qua O(log n) chuỗi | CSES 2134 Path Queries II | ⬜ |
