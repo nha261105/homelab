@@ -98,6 +98,7 @@ can state its whole picture in one line.
 | `pointer({ text })` | arrow tip | `l`, `r`, `i`, `lo`, `hi`… put it at `z: -0.5` to sit under a row |
 | `frame()` | centre | dashed window behind cells; width through the `w` prop: `(r − l) * U + 70` |
 | `scene.link(id, { from, to })` | — | curved arc between two nodes; draw it with `p: 1, from: { p: 0 }`; a pill can `follow` it |
+| `scene.link(id, { from, to, anchor: "center", arrow: true, bend })` | — | graph edge: centre to centre, trimmed at the node faces; `arrow: true` for directed edges (the head appears as the line finishes drawing); `bend` ±0.1–0.4 curves it sideways to avoid crossings. Never fake arrows with text pills. |
 
 Positions are in world units: `x` = column, `y` = row (a second row at `y: 3`), `z` = height (up is positive).
 

@@ -10,7 +10,8 @@
  * Usage (see references/motion.md for the full guide):
  *   const scene = createScene(svgEl, { unit: 62 });
  *   scene.add("c0", { shape: shapes.block({ label: 1, sub: 0 }), x: 0, shadow: true, cls: "cell" });
- *   scene.link("arc", { from: "c0", to: "c6" });
+ *   scene.link("arc", { from: "c0", to: "c6" });              // arc over the tops (arrays)
+ *   scene.link("e1", { from: "v1", to: "v3", anchor: "center", arrow: true, bend: 0.2 });  // graph edge
  *   scene.state({ c0: { cls: "cell is-ptr" }, arc: { p: 1, from: { p: 0 }, delay: 280 } });
  */
 
@@ -224,13 +225,17 @@ export function createScene(svg, options = {}) {
   }
 
   /** Add a curved connector between two nodes. Its `p` prop (0..1) is how much of it is drawn. */
-  function link(id, { from, to, bend = 1, cls = "", p = 0, o: op = 1 } = {}) {
+  function link(id, { from, to, bend = 1, cls = "", p = 0, o: op = 1, arrow = false, anchor = "top" } = {}) {
     const g = el("g");
     const path = el("path");
     g.append(path);
+    let head = null;
+    if (arrow) { head = el("path", { class: "hl-arrow" }); g.append(head); }
     layers.links.append(g);
     const n = blank(id, "link", g, { kind: "hl-link" }, { p, o: op, bend }, cls);
     n.path = path;
+    n.head = head;
+    n.anchor = anchor;
     n.ends = [from, to];
     nodes.set(id, n);
     setCls(n, cls);
@@ -348,17 +353,45 @@ export function createScene(svg, options = {}) {
   function drawLink(n) {
     const a = nodes.get(n.ends[0]), b = nodes.get(n.ends[1]);
     if (!a || !b) return;
-    const top = (m) => [m.screen[0], m.screen[1] + (m.shape.box ? m.shape.box[1] * m.props.s : 0) - 4];
-    const [x1, y1] = top(a), [x2, y2] = top(b);
-    // apex sits `lift` px above the higher end (quadratic control point is twice that)
-    const lift = n.props.bend * (14 + Math.abs(x2 - x1) * 0.08);
-    const cx = (x1 + x2) / 2, cy = Math.min(y1, y2) - lift * 2;
+    let x1, y1, x2, y2, cx, cy;
+    if (n.anchor === "center") {
+      // centre to centre (graphs): a gentle bend sideways, ends trimmed to each node's face
+      const mid = (m) => {
+        const bx = m.shape.box, s = m.props.s;
+        return bx ? [m.screen[0] + ((bx[0] + bx[2]) / 2) * s, m.screen[1] + (bx[1] / 2) * s, ((bx[2] - bx[0]) / 2) * s, (-bx[1] / 2) * s]
+                  : [m.screen[0], m.screen[1], 0, 0];
+      };
+      const A = mid(a), B = mid(b);
+      const dx = B[0] - A[0], dy = B[1] - A[1], d = Math.hypot(dx, dy) || 1;
+      cx = (A[0] + B[0]) / 2 - (dy / d) * d * 0.18 * n.props.bend;
+      cy = (A[1] + B[1]) / 2 + (dx / d) * d * 0.18 * n.props.bend;
+      const trim = (P, gap) => {
+        const tx = cx - P[0], ty = cy - P[1], tl = Math.hypot(tx, ty) || 1;
+        const k = Math.min(P[2] / (Math.abs(tx / tl) || 1e-6), P[3] / (Math.abs(ty / tl) || 1e-6)) + gap;
+        return [P[0] + (tx / tl) * k, P[1] + (ty / tl) * k];
+      };
+      [x1, y1] = trim(A, 3);
+      [x2, y2] = trim(B, n.head ? 5 : 3);
+    } else {
+      const top = (m) => [m.screen[0], m.screen[1] + (m.shape.box ? m.shape.box[1] * m.props.s : 0) - 4];
+      [x1, y1] = top(a); [x2, y2] = top(b);
+      // apex sits `lift` px above the higher end (quadratic control point is twice that)
+      const lift = n.props.bend * (14 + Math.abs(x2 - x1) * 0.08);
+      cx = (x1 + x2) / 2; cy = Math.min(y1, y2) - lift * 2;
+    }
     n.path.setAttribute("d", `M${r2(x1)} ${r2(y1)} Q${r2(cx)} ${r2(cy)} ${r2(x2)} ${r2(y2)}`);
     const len = n.path.getTotalLength();
     n.path.style.strokeDasharray = String(r2(len));
     n.path.style.strokeDashoffset = String(r2(len * (1 - clamp01(n.props.p))));
     n.g.style.opacity = String(n.props.p > 0.001 ? r2(clamp01(n.props.o)) : 0);
-    n.mid = [cx, 0.25 * y1 + 0.5 * cy + 0.25 * y2];
+    if (n.head) {
+      // arrowhead at the `to` end, pointing along the curve's final tangent; appears as the line arrives
+      const ux = x2 - cx, uy = y2 - cy, ul = Math.hypot(ux, uy) || 1, fx = ux / ul, fy = uy / ul;
+      const L = 10, W = 5.5, bx = x2 - fx * L, by = y2 - fy * L;
+      n.head.setAttribute("d", `M${r2(x2)} ${r2(y2)} L${r2(bx - fy * W)} ${r2(by + fx * W)} L${r2(bx + fy * W)} ${r2(by - fx * W)} Z`);
+      n.head.style.opacity = String(r2(clamp01((n.props.p - 0.85) / 0.15)));
+    }
+    n.mid = [0.25 * x1 + 0.5 * cx + 0.25 * x2, 0.25 * y1 + 0.5 * cy + 0.25 * y2];
   }
   function drawFollower(n) {
     const L = nodes.get(n.follow);
