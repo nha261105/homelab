@@ -142,7 +142,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | 3 | `zero-one-bfs` | BFS 0-1 | 0-1 BFS | Cạnh nặng 0 đẩy vào đầu deque, cạnh nặng 1 đẩy vào cuối | CF 1063B Labyrinth | ✅ |
 | 4 | `bellman-ford` | Bellman-Ford & chu trình âm | Bellman-Ford and negative cycles | n−1 lượt nới lỏng; lượt thứ n còn giảm được là có chu trình âm | CSES 1673 High Score · CSES 1197 Cycle Finding | ✅ |
 | 5 | `floyd` | Floyd–Warshall | Floyd–Warshall | Ma trận khoảng cách, lần lượt cho đi qua từng đỉnh trung gian k | CSES 1672 Shortest Routes II | ✅ |
-| 6 | `state-graph` | Đồ thị trạng thái | Graphs of states | Đỉnh = (thành phố, đã dùng phiếu giảm giá chưa) | CSES 1195 Flight Discount | ⬜ |
+| 6 | `state-graph` | Đồ thị trạng thái | Graphs of states | Đỉnh = (thành phố, đã dùng phiếu giảm giá chưa) | CSES 1195 Flight Discount | ✅ |
 
 ### 12. DSU & cây khung nhỏ nhất · DSU & Minimum Spanning Trees · key `dsu-mst` · Đợt 3
 
