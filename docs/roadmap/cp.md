@@ -116,7 +116,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `seen-before` | Đã gặp chưa? (set / map) | Seen it before? (set / map) | Two Sum không cần sắp xếp: mỗi số hỏi "phần bù đã có chưa" | LeetCode 1 · CSES 1621 Distinct Numbers | ✅ |
-| 2 | `subarray-sum-k` | Đếm đoạn con có tổng k | Counting subarrays with sum k | Prefix sum + map đếm số lần gặp `pre − k` | LeetCode 560 · CSES 1661 Subarray Sums II | ⬜ |
+| 2 | `subarray-sum-k` | Đếm đoạn con có tổng k | Counting subarrays with sum k | Prefix sum + map đếm số lần gặp `pre − k` | LeetCode 560 · CSES 1661 Subarray Sums II | ✅ |
 | 3 | `multiset` | multiset: lấy và xoá phần tử gần nhất | multiset: take the closest | Vé giá ≤ x: `upper_bound` rồi lùi một bước, xoá vé đã bán | CSES 1091 Concert Tickets · CSES 1164 Room Allocation | ⬜ |
 | 4 | `priority-queue` | Hàng đợi ưu tiên | Priority queues | Heap nhị phân: thêm thì nổi lên, lấy đỉnh thì chìm xuống | LeetCode 215 · CSES 1076 Sliding Median | ⬜ |
 
