@@ -206,7 +206,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
-| 1 | `bit-tricks` | Thao tác bit cơ bản | Bit tricks | Hàng 8 bit: bật, tắt, kiểm tra bit; XOR triệt tiêu từng cặp | LeetCode 136 · LeetCode 191 | ⬜ |
+| 1 | `bit-tricks` | Thao tác bit cơ bản | Bit tricks | Hàng 8 bit: bật, tắt, kiểm tra bit; XOR triệt tiêu từng cặp | LeetCode 136 · LeetCode 191 | ✅ |
 | 2 | `subset-masks` | Duyệt tập con bằng mask | Subsets as bitmasks | 0..2ⁿ−1, mỗi số là một tập con (nối lại chương 02) | CSES 1623 Apple Division · LeetCode 78 | ⬜ |
 | 3 | `meet-in-middle` | Meet in the middle | Meet in the middle | Chia đôi tập, liệt kê 2^(n/2) tổng mỗi bên rồi ghép bằng sắp xếp | CSES 1628 Meet in the Middle | ⬜ |
 
