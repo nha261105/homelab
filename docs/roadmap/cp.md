@@ -288,7 +288,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 | # | slug | Tên bài (VI) | Name (EN) | Sơ đồ | Luyện tập | |
 |---|---|---|---|---|---|---|
 | 1 | `manacher` | Manacher: xâu đối xứng | Manacher's palindromes | Chèn ký tự đệm; tái dùng bán kính trong hộp đối xứng | CSES 1111 Longest Palindrome · LeetCode 5 | ✅ |
-| 2 | `aho-corasick` | Aho-Corasick | Aho-Corasick | Trie + liên kết thất bại; đọc văn bản một lượt khớp mọi mẫu | CSES 2102 Finding Patterns · CSES 2103 Counting Patterns | ⬜ |
+| 2 | `aho-corasick` | Aho-Corasick | Aho-Corasick | Trie + liên kết thất bại; đọc văn bản một lượt khớp mọi mẫu | CSES 2102 Finding Patterns · CSES 2103 Counting Patterns | ✅ |
 | 3 | `suffix-array` | Mảng hậu tố | Suffix array | Sắp các hậu tố bằng cách nhân đôi độ dài; mảng LCP | CSES 2105 Distinct Substrings · CSES 2106 Repeating Substring | ⬜ |
 | 4 | `min-rotation` | Xoay vòng nhỏ nhất | Minimal rotation | So hai ứng viên, loại cả khối khi một bên thua | CSES 1110 Minimal Rotation | ⬜ |
 
