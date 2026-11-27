@@ -228,7 +228,7 @@ Lộ trình có 3 cấp, từ mới học tới mức thi VNOI / ICPC / Codeforc
 |---|---|---|---|---|---|---|
 | 1 | `sqrt-decomposition` | Chia căn | Square-root decomposition | Mảng chia thành √n khối, mỗi khối giữ sẵn tổng của nó | CF 13E Holes | ✅ |
 | 2 | `offline-queries` | Sắp truy vấn để trả lời offline | Answering queries offline | Sắp truy vấn theo đầu phải, quét mảng một lần với Fenwick | CSES 1734 Distinct Values Queries | ✅ |
-| 3 | `mo-algorithm` | Thuật toán Mo | Mo's algorithm | Truy vấn sắp theo (khối của l, r); hai con trỏ trượt qua lại | SPOJ DQUERY · CSES 1734 | ⬜ |
+| 3 | `mo-algorithm` | Thuật toán Mo | Mo's algorithm | Truy vấn sắp theo (khối của l, r); hai con trỏ trượt qua lại | SPOJ DQUERY · CSES 1734 | ✅ |
 
 ### 21. Đồ thị nâng cao · Advanced Graphs · key `graphs-adv` · Đợt 6
 
